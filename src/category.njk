@@ -1,0 +1,38 @@
+---
+layout: base.njk
+pagination:
+  data: allSubCategories
+  size: 1
+  alias: cat
+permalink: "/category/{{ cat.mainSlug }}/{{ cat.subSlug }}/"
+eleventyComputed:
+  title: "{{ cat.subLabel }}"
+---
+{% import "macros.njk" as macros %}
+{% set catPosts = collections.posts | whereSubCategory(cat.subSlug) | reverse %}
+<main class="w-full pt-16 bg-surface min-h-screen">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-10">
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 mb-4 text-on-surface-variant font-label-xs text-label-xs uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="/">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="/category/{{ cat.mainSlug }}/">{{ cat.mainLabel }}</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-bold">{{ cat.subLabel }}</span>
+</nav>
+<div class="bg-surface-container-low rounded-xl p-6 sm:p-8">
+<h1 class="font-headline-xl text-[28px] sm:text-display-hero text-on-surface tracking-tight font-extrabold mb-2">{{ cat.subLabel }}</h1>
+<p class="font-body-lead text-body-lead text-on-surface-variant">{{ catPosts.length }} stor{% if catPosts.length != 1 %}ies{% else %}y{% endif %} in {{ cat.mainLabel }} &rsaquo; {{ cat.subLabel }}.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<main class="lg:col-span-8 flex flex-col gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+{% for post in catPosts %}{{ macros.articleCard(post) }}{% endfor %}
+</div>
+{% if catPosts.length == 0 %}<p class="font-body-md text-body-md text-on-surface-variant">No stories published in this category yet — check back soon.</p>{% endif %}
+</main>
+{% include "sidebar.njk" %}
+</div>
+</div>
+</main>

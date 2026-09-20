@@ -1,0 +1,21 @@
+---
+permalink: "/feed-latest.xml"
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>{{ site.name }} — Latest Posts</title>
+<link>{{ site.url }}/</link>
+<description>{{ site.description }} (new posts only — excludes migrated archive)</description>
+{% for post in collections.posts | reverse %}{% if not post.data.migrated %}
+<item>
+<title>{{ post.data.title }}</title>
+<link>{{ site.url }}{{ post.url }}</link>
+<guid>{{ site.url }}{{ post.url }}</guid>
+<pubDate>{{ post.date.toUTCString() }}</pubDate>
+<description>{{ post.data.excerpt }}</description>
+</item>
+{% endif %}{% endfor %}
+</channel>
+</rss>

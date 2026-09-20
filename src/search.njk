@@ -1,0 +1,53 @@
+---
+layout: base.njk
+title: "Search"
+---
+<main class="w-full pt-16 bg-surface min-h-screen">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="w-full mb-8">
+<div class="relative bg-surface-container-low p-6 sm:p-8 rounded-xl shadow-sm">
+<div class="max-w-3xl">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-primary font-bold block mb-2">Search</span>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant text-[22px] pointer-events-none">search</span>
+<input class="w-full h-14 pl-12 pr-4 rounded-lg bg-surface-container-lowest font-headline-md text-headline-md text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary" id="search-input" placeholder="Search guides..." type="text"/>
+</div>
+</div>
+<p class="mt-4 font-body-sm text-body-sm text-on-surface-variant" id="search-status"></p>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-4" id="search-results"></div>
+</div>
+</main>
+<script>
+(function() {
+  var input = document.getElementById('search-input');
+  var status = document.getElementById('search-status');
+  var results = document.getElementById('search-results');
+  var index = [];
+
+  fetch('/search-index.json').then(function(r){ return r.json(); }).then(function(data) {
+    index = data;
+    var params = new URLSearchParams(window.location.search);
+    var q = params.get('q');
+    if (q) { input.value = q; runSearch(q); }
+  });
+
+  function runSearch(q) {
+    q = q.trim().toLowerCase();
+    if (!q) { results.innerHTML = ''; status.textContent = ''; return; }
+    var matches = index.filter(function(item) {
+      return item.title.toLowerCase().indexOf(q) !== -1 || (item.excerpt || '').toLowerCase().indexOf(q) !== -1;
+    });
+    status.textContent = matches.length + ' result' + (matches.length === 1 ? '' : 's') + ' for "' + q + '"';
+    results.innerHTML = matches.map(function(item) {
+      return '<a href="' + item.url + '" class="block bg-surface-container-lowest rounded-xl p-5 shadow-sm hover:shadow-md transition-all">' +
+        '<span class="font-label-xs text-label-xs uppercase text-primary font-bold">' + item.category + '</span>' +
+        '<h3 class="font-headline-md text-headline-md text-on-surface font-bold mt-1">' + item.title + '</h3>' +
+        '<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">' + item.excerpt + '</p></a>';
+    }).join('');
+  }
+
+  input.addEventListener('input', function() { runSearch(input.value); });
+})();
+</script>

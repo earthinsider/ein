@@ -1,0 +1,298 @@
+---
+layout: base.njk
+title: "About"
+---
+<main class="w-full pt-16 bg-surface min-h-screen"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><div class="flex flex-col w-full">
+<!-- Breadcrumb & Editorial Header -->
+<div class="mb-12">
+<nav class="flex items-center gap-2 mb-4">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-outline text-[14px]">chevron_right</span>
+<span class="font-label-md text-label-md text-primary font-semibold">About &amp; Editorial Standards</span>
+</nav>
+<div class="relative bg-surface-container-low rounded-xl p-8 sm:p-12 overflow-hidden shadow-sm">
+<div class="absolute -right-20 -top-20 w-80 h-80 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest text-primary font-label-xs text-label-xs uppercase tracking-wider mb-6 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          Trust &amp; Verification Protocol
+        </div>
+<h1 class="font-display-hero text-[32px] sm:text-display-hero text-on-surface tracking-tight mb-4">
+          Editorial Transparency, Verification &amp; Standards
+        </h1>
+<p class="font-body-lead text-body-lead text-on-surface-variant max-w-2xl">
+          {{ site.description }} We aim for clear, practical, and honest guidance — noting where something depends on your specific situation instead of guessing.
+        </p>
+<div class="flex flex-wrap items-center gap-6 mt-8 pt-6 bg-surface-container/60 rounded-lg px-6 py-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">100% Independent Testing</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">science</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">Peer-Reviewed By Specialists</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">format_image_left</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">Zero-Tracking Ethics</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary 2-Column Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<!-- Main Editorial Stream (8 cols) -->
+<div class="lg:col-span-8 flex flex-col space-y-12">
+<!-- Section: Mission -->
+<section class="flex flex-col space-y-6">
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">What We Cover</h2>
+<p class="font-body-default text-body-default text-on-surface-variant max-w-prose">{{ site.description }}</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+{% for cat in categories | limit(6) %}
+<a href="/category/{{ cat.slug }}/" class="bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4"><span class="material-symbols-outlined text-[22px]">{{ cat.icon or "label" }}</span></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-1 mb-2">{{ cat.label }}</h3>
+</a>
+{% endfor %}
+</div>
+</section>
+<!-- Section: Testing Methodology & Affiliate Disclosure -->
+<section class="flex flex-col space-y-6">
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Product Testing &amp; Affiliate Disclosure</h2>
+<span class="font-label-xs text-label-xs text-outline tracking-wider uppercase font-mono">02 // Integrity</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-on-surface mt-1">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">We Do Not Accept Paid Placements or Free Seed Units</h3>
+<p class="font-body-default text-body-default text-on-surface-variant leading-relaxed">
+                All reviewed seeds, equipment, pressure washers, composting urns, and cast iron cookware are purchased anonymously through everyday consumer retail channels using our corporate operational testing budget. We categorically reject free manufacturer review units, sponsored placement deals, and pre-release VIP seeding to guarantee our impressions match what you unbox.
+              </p>
+</div>
+</div>
+<div class="flex items-start gap-4 pt-4 bg-surface-container-low/40 rounded-xl p-6">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/30 text-secondary flex items-center justify-center shrink-0 mt-1">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Affiliate Revenue Mechanics</h3>
+<p class="font-body-default text-body-default text-on-surface-variant leading-relaxed">
+                When readers purchase through our contextual retail links, we may earn an affiliate commission. This never alters our evaluations: if a sustainable soap dispenser fails after three weeks or an heirloom seed batch yields suboptimal germination, we state it plainly, regardless of merchant partnerships. Our laboratory and editorial teams operate in absolute isolation from advertising sales.
+              </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Editorial Review Process -->
+<section class="flex flex-col space-y-6">
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">How We Research &amp; Review</h2>
+</div>
+<p class="font-body-default text-body-default text-on-surface-variant">Every guide on {{ site.name }} is researched from primary and reputable secondary sources, structured for clarity, and reviewed by our editorial process before publishing. Where information is uncertain or situation-dependent, we say so plainly rather than guessing.</p>
+</section>
+<!-- Section: Privacy & Data Ethics -->
+<section class="flex flex-col space-y-6">
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Privacy &amp; Data Protection Commitments</h2>
+<span class="font-label-xs text-label-xs text-outline tracking-wider uppercase font-mono">04 // Privacy</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm space-y-6">
+<p class="font-body-default text-body-default text-on-surface-variant leading-relaxed">
+            We believe an uncluttered life extends to digital boundaries. {{ site.name }} was engineered without invasive fingerprinting scripts, third-party pixel aggregators, or behavioral advertisement brokers.
+          </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-4 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">cookie_off</span>
+<h4 class="font-headline-sm text-headline-sm font-semibold">Zero Third-Party Ad Cookies</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                We do not auction reader behavioral logs. Your browsing paths through our composting guides stay completely private.
+              </p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">mail_lock</span>
+<h4 class="font-headline-sm text-headline-sm font-semibold">Non-Shared Mailing Database</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Subscriber addresses are stored strictly in encrypted storage. We never trade, license, or sell community records.
+              </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Contact & Correction Form -->
+<section class="flex flex-col space-y-6">
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Report an Inaccuracy or Query the Desk</h2>
+<span class="font-label-xs text-label-xs text-outline tracking-wider uppercase font-mono">05 // Contact</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+            If you identify a conflicting ratio, outdated botanical binomial, or chemical safety nuance, please notify our oversight team with supporting documentation. We issue logged transparent updates within 48 hours.
+          </p>
+<form class="space-y-4" id="correctionForm" onsubmit="event.preventDefault(); document.getElementById('formSuccess').classList.remove('hidden'); this.reset();">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="senderName">Your Name</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-inner transition-all" id="senderName" placeholder="e.g. Margaret Thorne" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="senderEmail">Email Address</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-inner transition-all" id="senderEmail" placeholder="e.g. margaret@domain.org" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="articleRef">Article Reference / URL</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-inner transition-all" id="articleRef" placeholder="e.g. Natural Borax Protocols (Guide #104)" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="notes">Correction Note or Query</label>
+<textarea class="w-full p-3.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm focus:outline-none focus:bg-surface-container-lowest shadow-inner transition-all" id="notes" placeholder="Please cite specific paragraph, botanical error, or lab study..." required="" rows="4"></textarea>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label-xs text-label-xs text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">lock</span> Encrypted direct editorial queue
+              </span>
+<button class="px-6 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container hover:shadow-md transition-all" type="submit">
+                Submit for Editorial Audit
+              </button>
+</div>
+</form>
+<div class="hidden mt-4 p-4 rounded-lg bg-primary/10 text-primary flex items-center gap-3" id="formSuccess">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="font-body-sm text-body-sm">Thank you. Your inquiry has been routed to the Standards Desk. An editor will respond shortly.</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Desktop Sidebar (4 cols) -->
+<div class="lg:col-span-4 flex flex-col space-y-8 sticky top-24">
+<!-- Box 1: Plain Newsletter Signup -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-primary font-bold block mb-1">Weekly Intelligence</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">The Sunday Eco-Report</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-snug">
+          Five rigorously verified techniques, zero sponsored spam. Direct from our testing gardens and labs.
+        </p>
+<form class="space-y-3" onsubmit="event.preventDefault(); this.querySelector('button').innerText = 'Subscribed'; this.querySelector('input').disabled = true;">
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm focus:outline-none focus:bg-surface-container shadow-inner" placeholder="Enter your email" required="" type="email"/>
+<button class="w-full h-11 rounded-lg bg-on-background text-surface-container-lowest font-label-md text-label-md hover:bg-on-surface-variant transition-colors shadow-sm" type="submit">
+            Subscribe Without Tracking
+          </button>
+</form>
+<p class="font-label-xs text-label-xs text-outline mt-3 text-center">Unsubscribe anytime. Zero telemetry.</p>
+</div>
+<!-- Box 2: Trending Articles -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Trending Guides</h3>
+<span class="material-symbols-outlined text-outline text-[18px]">trending_up</span>
+</div>
+<div class="space-y-4">
+<a class="group flex items-start gap-4" href="#">
+<span class="font-headline-md text-headline-md text-outline group-hover:text-primary font-mono transition-colors">01</span>
+<div>
+<span class="font-label-xs text-label-xs uppercase text-primary font-semibold">Gardening</span>
+<h4 class="font-body-default text-body-default text-on-surface group-hover:text-primary font-medium leading-snug transition-colors">
+                Soil Microbiology: How Fungal Hyphae Protect Root Resilience
+              </h4>
+<span class="font-label-xs text-label-xs text-on-surface-variant">8 min read • Updated yesterday</span>
+</div>
+</a>
+<div class="w-full h-px bg-surface-container-high"></div>
+<a class="group flex items-start gap-4" href="#">
+<span class="font-headline-md text-headline-md text-outline group-hover:text-secondary font-mono transition-colors">02</span>
+<div>
+<span class="font-label-xs text-label-xs uppercase text-secondary font-semibold">Kitchen</span>
+<h4 class="font-body-default text-body-default text-on-surface group-hover:text-secondary font-medium leading-snug transition-colors">
+                The Non-Toxic Cookware Index: Testing 18 Seasoned Skillets
+              </h4>
+<span class="font-label-xs text-label-xs text-on-surface-variant">12 min read • 4 days ago</span>
+</div>
+</a>
+<div class="w-full h-px bg-surface-container-high"></div>
+<a class="group flex items-start gap-4" href="#">
+<span class="font-headline-md text-headline-md text-outline group-hover:text-on-surface font-mono transition-colors">03</span>
+<div>
+<span class="font-label-xs text-label-xs uppercase text-on-surface-variant font-semibold">Home Care</span>
+<h4 class="font-body-default text-body-default text-on-surface group-hover:text-primary font-medium leading-snug transition-colors">
+                DIY Vinegar Wash: Optimal Dilution Ratios for Marble Safety
+              </h4>
+<span class="font-label-xs text-label-xs text-on-surface-variant">5 min read • Verified protocol</span>
+</div>
+</a>
+</div>
+</div>
+<!-- Box 3: Network Categories Hierarchy -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-4">Core Knowledge Hubs</h3>
+<div class="flex flex-col space-y-2">
+<a class="flex items-center justify-between p-2.5 rounded-lg hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary font-medium">Home Cleaning Formulations</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">48 guides</span>
+</a>
+<a class="flex items-center justify-between p-2.5 rounded-lg hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary font-medium">Regenerative Horticulture</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">62 guides</span>
+</a>
+<a class="flex items-center justify-between p-2.5 rounded-lg hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-secondary font-medium">Fermentation &amp; Preservation</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">35 guides</span>
+</a>
+<a class="flex items-center justify-between p-2.5 rounded-lg hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-tertiary font-medium">Equipment Benchmarking</span>
+</div>
+<span class="font-label-xs text-label-xs text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">21 tests</span>
+</a>
+</div>
+</div>
+<!-- Box 4: Sibling Network Portals -->
+<div class="bg-surface-container-low rounded-xl p-6 shadow-sm space-y-4">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-on-surface-variant font-bold block">Sibling Networks</span>
+<a class="block p-3 rounded-lg bg-surface-container-lowest hover:shadow-sm transition-all group" href="#">
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Clean Insider</span>
+<span class="material-symbols-outlined text-[16px] text-outline group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[13px]">Dedicated industrial audits of household surfactants &amp; greywater systems.</p>
+</a>
+<a class="block p-3 rounded-lg bg-surface-container-lowest hover:shadow-sm transition-all group" href="#">
+<div class="flex items-center justify-between mb-1">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Garden Insider</span>
+<span class="material-symbols-outlined text-[16px] text-outline group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[13px]">Climate-zoned planting almanacs and heirloom cultivar survival tests.</p>
+</a>
+</div>
+<!-- Box 5: Subtle Editorial Ad Placeholder -->
+<div class="rounded-xl p-6 text-center bg-surface-container-lowest shadow-sm flex flex-col items-center justify-center min-h-[180px] relative overflow-hidden">
+<span class="font-label-xs text-label-xs uppercase text-outline tracking-widest font-semibold mb-2">Non-Tracking Sponsorship</span>
+<p class="font-headline-sm text-headline-sm text-on-surface mb-2">Sustainable Forestry Partners</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px] max-w-[220px] mb-4">
+          Certifying independent zero-deforestation timber and paper supplies.
+        </p>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:underline" href="#">
+          Read Mission Statement <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+</div></div></main>

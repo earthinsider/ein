@@ -1,0 +1,27 @@
+---
+layout: base.njk
+title: "All Posts"
+pagination:
+  data: collections.posts
+  size: 12
+  reverse: true
+  alias: pagePosts
+permalink: "{% if pagination.pageNumber == 0 %}/all-posts/{% else %}/all-posts/page/{{ pagination.pageNumber | plus1 }}/{% endif %}"
+---
+{% import "macros.njk" as macros %}
+<main class="w-full pt-16 bg-surface min-h-screen">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-10">
+<h1 class="font-headline-xl text-[28px] sm:text-display-hero text-on-surface tracking-tight font-extrabold mb-2">All Posts &amp; Field Guides</h1>
+<p class="font-body-lead text-body-lead text-on-surface-variant">{{ collections.posts.length }} evergreen guides and counting.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+{% for post in pagePosts %}{{ macros.articleCard(post) }}{% endfor %}
+</div>
+<nav aria-label="Pagination" class="mt-10 bg-surface-container-lowest rounded-2xl p-3 shadow-sm flex items-center justify-between gap-2">
+{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}" class="px-3.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors">← Previous</a>{% else %}<span></span>{% endif %}
+<span class="font-body-sm text-body-sm text-on-surface-variant">Page {{ pagination.pageNumber | plus1 }} of {{ pagination.pages.length }}</span>
+{% if pagination.href.next %}<a href="{{ pagination.href.next }}" class="px-3.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors">Next →</a>{% else %}<span></span>{% endif %}
+</nav>
+</div>
+</main>
