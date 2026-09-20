@@ -1,0 +1,161 @@
+---
+layout: base.njk
+templateClass: post
+---
+{% import "macros.njk" as macros %}
+{% import "ads.njk" as ads %}
+<div class="fixed top-16 left-0 w-full h-1 bg-surface-container z-40"><div class="h-full bg-primary w-0 transition-all duration-150 ease-out" id="read-progress"></div></div>
+<main class="w-full pt-16 bg-surface min-h-screen">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col w-full">
+<header class="w-full mb-8 pt-2">
+<nav class="flex items-center gap-2 font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mb-4">
+<a class="hover:text-primary transition-colors" href="/">Home</a>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="/category/{{ categorySlug }}/">{{ categoryLabel }}</a>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-on-surface font-bold">{{ title }}</span>
+</nav>
+<div class="flex flex-wrap items-center gap-3 mb-6">
+<span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-xs text-label-xs font-bold uppercase tracking-wider">{{ categoryLabel }}</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<time class="font-label-md text-label-md text-on-surface-variant" datetime="{{ page.date | isoDate }}">{{ page.date | dateDisplay }}</time>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<span class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">schedule</span> {{ content | readingTime }} min read</span>
+</div>
+<h1 class="font-display-hero text-[32px] sm:text-display-hero text-on-surface tracking-tight max-w-5xl leading-tight mb-6">{{ title }}</h1>
+{% if excerpt %}<p class="font-body-lead text-body-lead text-on-surface-variant max-w-3xl mb-8 leading-relaxed">{{ excerpt }}</p>{% endif %}
+<div class="flex flex-wrap items-center justify-between gap-3 py-3 bg-surface-container-low rounded-xl px-5">
+<span class="font-label-md text-label-md text-on-surface-variant">Reviewed by the {{ site.shortName }} Editorial Team</span>
+<div class="flex items-center gap-2 shrink-0">
+<span class="font-label-caps text-label-xs text-on-surface-variant uppercase tracking-wider mr-1 hidden sm:inline">Share</span>
+<div class="relative inline-block">
+<button aria-label="Copy link" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all shadow-sm" id="copy-btn" type="button"><span class="material-symbols-outlined text-[18px]">link</span></button>
+<span class="opacity-0 pointer-events-none transition-opacity duration-200 absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-inverse-surface text-inverse-on-surface font-label-xs text-label-xs whitespace-nowrap shadow-md" id="copy-tip">Copied!</span>
+</div>
+<button aria-label="Save article" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-primary transition-all shadow-sm" id="bookmark-btn" type="button"><span class="material-symbols-outlined text-[18px]" id="bookmark-icon">bookmark_border</span></button>
+<button aria-label="Print article" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-all shadow-sm" onclick="window.print()" type="button"><span class="material-symbols-outlined text-[18px]">print</span></button>
+</div>
+</div>
+</header>
+
+{{ ads.responsiveBanner() }}
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-16">
+<article class="lg:col-span-8 flex flex-col min-w-0">
+<details class="lg:hidden mb-8 bg-surface-container-low rounded-xl p-4 shadow-sm">
+<summary class="font-headline-sm text-headline-sm font-bold text-on-surface cursor-pointer flex items-center justify-between list-none"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">format_list_bulleted</span> Article Outline</span><span class="material-symbols-outlined text-on-surface-variant">expand_more</span></summary>
+<nav class="mt-4 flex flex-col space-y-2.5 pt-3" id="toc-nav-mobile"></nav>
+</details>
+<div class="flex gap-8 items-start">
+<aside class="hidden xl:block w-56 shrink-0 sticky top-24 pt-1">
+<div class="bg-surface-container-low rounded-xl p-4 shadow-sm">
+<span class="font-label-xs text-label-xs uppercase tracking-widest text-outline block mb-3 font-bold">Contents</span>
+<ul class="space-y-3 font-body-sm text-body-sm" id="toc-nav"></ul>
+</div>
+</aside>
+<div class="flex-1 min-w-0 max-w-prose space-y-7 text-on-surface font-body-default text-body-default leading-relaxed" id="article-body">
+{{ content | safe }}
+</div>
+</div>
+
+<section class="bg-surface-container-lowest rounded-xl p-5 sm:p-6 mt-10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+<div><h4 class="font-headline-sm text-headline-sm text-on-surface">Was this guide helpful?</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Your feedback shapes what we cover next.</p></div>
+<div class="flex items-center gap-2" id="feedback-container">
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors" id="feedback-yes" type="button"><span class="material-symbols-outlined text-[18px]">thumb_up</span> Yes</button>
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="feedback-no" type="button"><span class="material-symbols-outlined text-[18px]">thumb_down</span> No</button>
+</div>
+</section>
+
+{% set related = collections.posts | whereCategory(categorySlug) %}
+{% if related.length > 1 %}
+<section class="mt-16">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-lg text-headline-md text-on-surface font-bold">More on {{ categoryLabel }}</h2>
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1 font-semibold" href="/category/{{ categorySlug }}/">View all <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+{% for post in related | limit(4) %}{% if post.url != page.url %}{{ macros.articleCard(post) }}{% endif %}{% endfor %}
+</div>
+</section>
+{% endif %}
+</article>
+{% include "sidebar.njk" %}
+</div>
+
+<section class="mb-16">
+<div class="flex items-center justify-between mb-8"><h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">Latest from {{ site.shortName }}</h2><a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1 font-semibold" href="/all-posts/">View all <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+{% for post in collections.posts | reverse | limit(3) %}{{ macros.articleCard(post) }}{% endfor %}
+</div>
+</section>
+</div>
+</div>
+</main>
+<script>
+(function() {
+  // reading progress
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var bar = document.getElementById('read-progress');
+    if (bar) bar.style.width = (h > 0 ? (document.documentElement.scrollTop / h) * 100 : 0) + '%';
+  });
+
+  // auto-generate table of contents from h2 headings inside the article body
+  var body = document.getElementById('article-body');
+  var tocList = document.getElementById('toc-nav');
+  var tocMobile = document.getElementById('toc-nav-mobile');
+  if (body && tocList) {
+    var headings = body.querySelectorAll('h2');
+    headings.forEach(function(h, i) {
+      if (!h.id) h.id = 'section-' + i;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.className = 'toc-link block text-on-surface-variant hover:text-primary transition-colors';
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
+      if (tocMobile) {
+        var a2 = a.cloneNode(true);
+        a2.className = 'font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors';
+        tocMobile.appendChild(a2);
+      }
+    });
+    window.addEventListener('scroll', function() {
+      var current = '';
+      headings.forEach(function(h) {
+        if (window.scrollY >= h.offsetTop - 140) current = h.id;
+      });
+      tocList.querySelectorAll('.toc-link').forEach(function(link) {
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('text-primary', 'font-semibold');
+        } else {
+          link.classList.remove('text-primary', 'font-semibold');
+        }
+      });
+    });
+  }
+
+  var copyBtn = document.getElementById('copy-btn');
+  var copyTip = document.getElementById('copy-tip');
+  if (copyBtn) copyBtn.addEventListener('click', function() {
+    navigator.clipboard.writeText(window.location.href).catch(function(){});
+    copyTip.classList.remove('opacity-0'); copyTip.classList.add('opacity-100');
+    setTimeout(function(){ copyTip.classList.remove('opacity-100'); copyTip.classList.add('opacity-0'); }, 2000);
+  });
+
+  var bookmarkBtn = document.getElementById('bookmark-btn');
+  var bookmarkIcon = document.getElementById('bookmark-icon');
+  if (bookmarkBtn) bookmarkBtn.addEventListener('click', function() {
+    var saved = bookmarkIcon.textContent === 'bookmark';
+    bookmarkIcon.textContent = saved ? 'bookmark_border' : 'bookmark';
+    bookmarkBtn.classList.toggle('text-primary');
+  });
+
+  var yes = document.getElementById('feedback-yes'), no = document.getElementById('feedback-no');
+  var voted = false;
+  if (yes) yes.addEventListener('click', function(){ if(!voted){voted=true; yes.classList.add('bg-primary','text-on-primary');} });
+  if (no) no.addEventListener('click', function(){ if(!voted){voted=true; no.classList.add('bg-error-container','text-error');} });
+})();
+</script>

@@ -1,0 +1,30 @@
+{% macro articleCard(post) %}
+<article class="flex flex-col bg-surface-container-low rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+<div class="aspect-[16/10] bg-surface-container-highest relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="{{ post.data.imageAlt or post.data.title }}" src="{{ post.data.image }}" loading="lazy"/>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface/90 backdrop-blur font-label-xs text-label-xs font-bold text-on-surface uppercase">{{ post.data.categoryLabel }}</span>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold group-hover:text-primary transition-colors leading-snug mb-2">
+<a href="{{ post.url }}">{{ post.data.title }}</a>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">{{ post.data.excerpt }}</p>
+<div class="mt-auto flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs pt-3">
+<span>{{ post.date | dateDisplay }}</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> {{ post.templateContent | readingTime }} min</span>
+</div>
+</div>
+</article>
+{% endmacro %}
+
+{% macro categoryCard(cat, count) %}
+<a href="/category/{{ cat.slug }}/" class="p-6 rounded-2xl bg-surface-container-low flex flex-col justify-between shadow-sm hover:shadow-md transition-all group">
+<div>
+<div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]">{{ cat.icon or "label" }}</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold mb-2">{{ cat.label }}</h3>
+</div>
+<span class="inline-flex items-center gap-2 font-label-md text-label-md text-primary font-bold">{{ count }} Guide{% if count != 1 %}s{% endif %} <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+</a>
+{% endmacro %}

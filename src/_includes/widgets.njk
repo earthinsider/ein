@@ -1,0 +1,60 @@
+<aside aria-label="Network Notifications" class="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2 pointer-events-none [&amp;&gt;*]:pointer-events-auto">
+<div id="widget-alerts" class="bg-surface-container-lowest rounded-xl p-3 shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-outline-variant/40 border-l-[3px] border-l-primary flex items-center gap-2.5 relative w-[240px] sm:w-[280px]">
+<div class="w-8 h-8 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[18px]">notifications_active</span></div>
+<div class="flex-1 min-w-0 pr-5"><p class="font-label-md text-label-md text-on-surface font-semibold leading-tight truncate">Get News Alerts</p><button class="widget-enable-btn mt-0.5 text-label-xs font-label-xs text-primary font-semibold hover:underline" type="button">Enable</button></div>
+<button aria-label="Close news alert" class="widget-close-btn absolute top-2 right-2 text-on-surface-variant hover:text-on-surface w-5 h-5 flex items-center justify-center rounded-md hover:bg-surface-container transition-colors" data-widget="widget-alerts" data-persistent="true" type="button"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+<div id="widget-telegram" class="bg-surface-container-lowest rounded-xl p-3 shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-outline-variant/40 border-l-[3px] border-l-secondary flex items-center gap-2.5 relative w-[240px] sm:w-[280px]">
+<div class="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary shrink-0"><span class="material-symbols-outlined text-[18px]">send</span></div>
+<div class="flex-1 min-w-0 pr-5"><p class="font-label-md text-label-md text-on-surface font-semibold leading-tight truncate">Join Telegram</p><a href="{{ site.social.telegram }}" class="mt-0.5 inline-block text-label-xs font-label-xs text-secondary font-semibold hover:underline">Join now</a></div>
+<button aria-label="Close Telegram prompt" class="widget-close-btn absolute top-2 right-2 text-on-surface-variant hover:text-on-surface w-5 h-5 flex items-center justify-center rounded-md hover:bg-surface-container transition-colors" data-widget="widget-telegram" data-persistent="false" type="button"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+<div id="widget-discord" class="bg-surface-container-lowest rounded-xl p-3 shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-outline-variant/40 border-l-[3px] border-l-tertiary flex items-center gap-2.5 relative w-[240px] sm:w-[280px]">
+<div class="w-8 h-8 rounded-lg bg-tertiary-container/20 flex items-center justify-center text-tertiary shrink-0"><span class="material-symbols-outlined text-[18px]">forum</span></div>
+<div class="flex-1 min-w-0 pr-5"><p class="font-label-md text-label-md text-on-surface font-semibold leading-tight truncate">Join Discord</p><a href="{{ site.social.discord }}" class="mt-0.5 inline-block text-label-xs font-label-xs text-tertiary font-semibold hover:underline">Join now</a></div>
+<button aria-label="Close Discord prompt" class="widget-close-btn absolute top-2 right-2 text-on-surface-variant hover:text-on-surface w-5 h-5 flex items-center justify-center rounded-md hover:bg-surface-container transition-colors" data-widget="widget-discord" data-persistent="false" type="button"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</div>
+</aside>
+<script>
+(function() {
+  // Get News Alerts: stays dismissed only once subscribed (persistent=true widgets never auto-reappear once "subscribed" flag is set)
+  // Telegram/Discord: dismiss hides for 1 hour, then reappears automatically
+  var HOUR_MS = 60 * 60 * 1000;
+  document.querySelectorAll('.widget-close-btn').forEach(function(btn) {
+    var id = btn.getAttribute('data-widget');
+    var persistent = btn.getAttribute('data-persistent') === 'true';
+    var el = document.getElementById(id);
+    if (!el) return;
+    var storageKey = 'ei_widget_dismissed_' + id;
+
+    if (!persistent) {
+      var dismissedAt = localStorage.getItem(storageKey);
+      if (dismissedAt && (Date.now() - parseInt(dismissedAt, 10)) < HOUR_MS) {
+        el.style.display = 'none';
+      }
+    } else {
+      if (localStorage.getItem(storageKey) === 'subscribed') {
+        el.style.display = 'none';
+      }
+    }
+
+    btn.addEventListener('click', function() {
+      el.style.display = 'none';
+      if (!persistent) {
+        localStorage.setItem(storageKey, Date.now().toString());
+      }
+    });
+  });
+
+  document.querySelectorAll('.widget-enable-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var el = document.getElementById('widget-alerts');
+      if ('Notification' in window) {
+        Notification.requestPermission();
+      }
+      localStorage.setItem('ei_widget_dismissed_widget-alerts', 'subscribed');
+      if (el) el.style.display = 'none';
+    });
+  });
+})();
+</script>

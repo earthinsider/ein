@@ -1,1 +1,36 @@
+{# Adsterra — responsive banner: 728x90 desktop / 320x50 mobile #}
+{% macro responsiveBanner() %}
+<div style="text-align:center;margin:1rem 0;">
+<script>
+(function(){
+  var isMobile = window.matchMedia('(max-width: 767px)').matches;
+  window.atOptions = isMobile
+    ? { 'key': 'e333a858ccc46f467f94d3f59ace1b53', 'format': 'iframe', 'height': 50, 'width': 320, 'params': {} }
+    : { 'key': '540f4484d7bafea63e4d187dbd65606f', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+  var s = document.createElement('script');
+  s.src = isMobile
+    ? 'https://hystericallikingdowntown.com/e333a858ccc46f467f94d3f59ace1b53/invoke.js'
+    : 'https://hystericallikingdowntown.com/540f4484d7bafea63e4d187dbd65606f/invoke.js';
+  document.currentScript.parentNode.insertBefore(s, document.currentScript.nextSibling);
+})();
+</script>
+</div>
+{% endmacro %}
 
+{# Adsterra — 300x250 sidebar box #}
+{% macro box300x250() %}
+<div style="text-align:center;margin:1rem 0;">
+<script>
+  atOptions = { 'key' : 'b6fbb07e0532e23cdd18470e8d671637', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+</script>
+<script src="https://hystericallikingdowntown.com/b6fbb07e0532e23cdd18470e8d671637/invoke.js"></script>
+</div>
+{% endmacro %}
+
+{# Adsterra — Native Banner. IMPORTANT: this exact zone must render on the page ONCE ONLY —
+   duplicating it (e.g. including this macro twice in the same page) is invalid per Adsterra:
+   only the first instance renders and the rest silently fail. Use only on the homepage. #}
+{% macro nativeBanner() %}
+<script async="async" data-cfasync="false" src="https://hystericallikingdowntown.com/6810d457285656dc514536aeea46e59f/invoke.js"></script>
+<div id="container-6810d457285656dc514536aeea46e59f"></div>
+{% endmacro %}

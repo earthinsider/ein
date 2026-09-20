@@ -1,0 +1,43 @@
+<aside class="lg:col-span-4 flex flex-col gap-8 w-full">
+{% import "ads.njk" as ads %}
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex justify-center">
+{{ ads.box300x250() }}
+</div>
+<div class="bg-surface-container-low rounded-2xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-5">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">trending_up</span> Trending Guides</h2>
+</div>
+<ol class="space-y-4">
+{% for post in collections.posts | reverse | limit(4) %}
+<li class="flex items-start gap-3.5 {% if not loop.last %}pb-4{% endif %}">
+<span class="font-display-hero text-headline-lg font-bold text-outline-variant leading-none shrink-0 w-7">{{ loop.index }}</span>
+<div>
+<span class="font-label-xs text-label-xs uppercase text-primary font-bold">{{ post.data.categoryLabel }}</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold hover:text-primary transition-colors mt-0.5 leading-snug"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">{{ post.templateContent | readingTime }} min read</span>
+</div>
+</li>
+{% endfor %}
+</ol>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
+<span class="w-10 h-10 rounded-xl bg-primary-container/10 text-primary flex items-center justify-center mb-4"><span class="material-symbols-outlined text-[24px]">mark_email_read</span></span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-2">{{ site.shortName }} Weekly</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-5 leading-relaxed">One verified guide a week, straight to your inbox. No spam.</p>
+<form class="space-y-3" onsubmit="event.preventDefault(); this.innerHTML='&lt;div class=\'p-4 rounded-xl bg-primary-fixed text-on-primary-fixed font-headline-sm text-headline-sm font-bold text-center\'&gt;Subscribed! Welcome.&lt;/div&gt;';">
+<input class="w-full h-11 px-3.5 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:bg-surface transition-all outline-none" placeholder="Enter your email..." required type="email"/>
+<button class="w-full h-11 rounded-lg bg-on-surface text-surface font-label-md text-label-md font-bold hover:opacity-90 transition-all flex items-center justify-center gap-2" type="submit"><span>Subscribe for Free</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
+</form>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-6 shadow-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-4 uppercase tracking-wider text-[13px]">Explore Our Network</h2>
+<div class="space-y-3">
+{% for s in site.network %}
+<a class="block p-3 rounded-xl bg-surface-container-lowest hover:bg-surface-container-high transition-colors shadow-sm" href="{{ s.url }}">
+<div class="flex items-center gap-2.5 mb-1"><span class="material-symbols-outlined text-secondary text-[18px]">{{ s.icon }}</span><span class="font-headline-sm text-headline-sm text-on-surface font-bold">{{ s.name }}</span></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">{{ s.description }}</p>
+</a>
+{% endfor %}
+</div>
+</div>
+</aside>

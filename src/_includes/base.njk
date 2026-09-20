@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>{% if title %}{{ title }} | {{ site.shortName }}{% else %}{{ site.name }} — {{ site.tagline }}{% endif %}</title>
+<meta name="description" content="{{ description or site.description }}"/>
+<link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
+<meta property="og:title" content="{{ title or site.name }}"/>
+<meta property="og:description" content="{{ description or site.description }}"/>
+<meta property="og:type" content="{% if templateClass == 'post' %}article{% else %}website{% endif %}"/>
+<meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
+{% if image %}<meta property="og:image" content="{{ image }}"/>
+<meta name="twitter:card" content="summary_large_image"/>{% endif %}
+<link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="/feed.xml"/>
+<!-- Adsterra Social Bar (self-injecting, site-wide) -->
+<script async="async" src="https://hystericallikingdowntown.com/93/46/4f/93464f51ee34274f409ec19f2cf79491.js"></script>
+<!-- Ad network domain verification (carried over from the live site) -->
+<meta content="dcbacedfccb1e45d60be16c0514acf8070c59156" name="dcbacedfccb1e45d60be16c0514acf8070c59156"/>
+<meta content="no-referrer-when-downgrade" name="referrer"/>
+<meta content="b8e237ba9f7e0a2ba0ebcc9feb4d0e25" name="monetag"/>
+<meta content="1a66e757995d2d92" name="yandex-verification"/>
+<meta content="BqHwGrHa9" name="admaven-placement"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+#article-body h2{font-family:Manrope,sans-serif;font-weight:700;font-size:28px;line-height:36px;letter-spacing:-0.02em;color:#1c1b1b;margin:2rem 0 1rem;scroll-margin-top:6rem;}
+#article-body h3{font-family:Manrope,sans-serif;font-weight:600;font-size:20px;line-height:28px;color:#1c1b1b;margin:1.5rem 0 0.75rem;}
+#article-body p{margin:0 0 1.25rem;}
+#article-body ul,#article-body ol{margin:0 0 1.25rem;padding-left:1.5rem;}
+#article-body ul{list-style:disc;}
+#article-body ol{list-style:decimal;}
+#article-body li{margin-bottom:0.5rem;}
+#article-body table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:14px;}
+#article-body th{background:#f0edec;text-align:left;padding:10px 14px;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:0.02em;}
+#article-body td{padding:10px 14px;border-top:1px solid #e5e2e1;}
+#article-body blockquote{background:#f6f3f2;border-left:3px solid #1f7a47;border-radius:0.75rem;padding:1.25rem 1.5rem;margin:1.5rem 0;font-style:italic;}
+#article-body .ei-key-takeaway{background:rgba(31,122,71,0.06);border-left:3px solid #1f7a47;border-radius:0.75rem;padding:1.25rem 1.5rem;margin:1.5rem 0;font-style:normal;}
+#article-body strong{font-weight:600;color:#1c1b1b;}
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-primary-fixed": "#00210e","inverse-on-surface": "#f3f0ef","surface-bright": "#fcf9f8","tertiary-container": "#a94e59","on-primary": "#ffffff","on-error": "#ffffff","on-secondary-container": "#205882","tertiary": "#8b3742","primary-fixed-dim": "#82d99c","error-container": "#ffdad6","inverse-primary": "#82d99c","surface-container-low": "#f6f3f2","outline": "#6f7a70","on-tertiary-fixed-variant": "#7b2b37","on-surface-variant": "#3f4940","surface-container": "#f0edec","error": "#ba1a1a","secondary-container": "#9cceff","tertiary-fixed-dim": "#ffb2b8","on-secondary": "#ffffff","surface-variant": "#e5e2e1","on-tertiary": "#ffffff","on-secondary-fixed": "#001d33","outline-variant": "#bec9be","on-background": "#1c1b1b","on-primary-fixed-variant": "#00522b","secondary": "#2d628d","surface-container-lowest": "#ffffff","secondary-fixed-dim": "#99cbfc","on-error-container": "#93000a","inverse-surface": "#313030","on-surface": "#1c1b1b","background": "#fcf9f8","surface-dim": "#dcd9d9","on-tertiary-container": "#ffe7e8","surface": "#fcf9f8","primary-container": "#1f7a47","secondary-fixed": "#cee5ff","tertiary-fixed": "#ffdadb","on-primary-container": "#adffc3","surface-container-high": "#ebe7e7","primary-fixed": "#9df6b7","on-tertiary-fixed": "#40000f","surface-tint": "#076d3b","on-secondary-fixed-variant": "#084a74","surface-container-highest": "#e5e2e1","primary": "#006033"
+        },
+        "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
+        "spacing": {"space-xs": "0.25rem","space-sm": "0.5rem","space-xl": "2.5rem","gutter": "1.5rem","space-md": "1rem","space-lg": "1.5rem","gutter-mobile": "1rem","margin": "2.5rem","margin-mobile": "1rem"},
+        "fontFamily": {"body-sm": ["Inter"],"body-lead": ["Inter"],"display-hero-mobile": ["Manrope"],"headline-xl-mobile": ["Manrope"],"body-default": ["Inter"],"headline-sm": ["Manrope"],"label-md": ["Inter"],"headline-xl": ["Manrope"],"headline-lg": ["Manrope"],"label-xs": ["Inter"],"headline-md": ["Manrope"],"display-hero": ["Manrope"]},
+        "fontSize": {
+          "body-sm": ["14px",{"lineHeight": "22px","fontWeight": "400"}],
+          "body-lead": ["18px",{"lineHeight": "29px","fontWeight": "400"}],
+          "display-hero-mobile": ["32px",{"lineHeight": "40px","letterSpacing": "-0.02em","fontWeight": "800"}],
+          "headline-xl-mobile": ["26px",{"lineHeight": "34px","letterSpacing": "-0.02em","fontWeight": "700"}],
+          "body-default": ["16px",{"lineHeight": "26px","fontWeight": "400"}],
+          "headline-sm": ["16px",{"lineHeight": "22px","letterSpacing": "-0.01em","fontWeight": "600"}],
+          "label-md": ["13px",{"lineHeight": "16px","letterSpacing": "0.01em","fontWeight": "600"}],
+          "headline-xl": ["36px",{"lineHeight": "44px","letterSpacing": "-0.025em","fontWeight": "700"}],
+          "headline-lg": ["24px",{"lineHeight": "32px","letterSpacing": "-0.02em","fontWeight": "700"}],
+          "label-xs": ["11px",{"lineHeight": "14px","letterSpacing": "0.05em","fontWeight": "700"}],
+          "headline-md": ["19px",{"lineHeight": "26px","letterSpacing": "-0.015em","fontWeight": "600"}],
+          "display-hero": ["48px",{"lineHeight": "56px","letterSpacing": "-0.03em","fontWeight": "800"}]
+        }
+      }
+    }
+  }</script>
+</head>
+<body class="bg-surface font-body-default text-on-surface antialiased">
+{% include "header.njk" %}
+{{ content | safe }}
+{% include "footer.njk" %}
+{% include "widgets.njk" %}
+</body>
+</html>
