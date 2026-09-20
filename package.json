@@ -1,0 +1,14 @@
+{
+  "name": "earthinsider-news-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Eleventy site for Earth Insider News (www.earthinsider.in) \u2014 migrated from Blogger.",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
