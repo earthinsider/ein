@@ -1,0 +1,462 @@
+[
+  {
+    "label": "India",
+    "slug": "india",
+    "subs": [
+      {
+        "label": "IN National",
+        "slug": "in-national"
+      },
+      {
+        "label": "IN Politics",
+        "slug": "in-politics"
+      },
+      {
+        "label": "IN State News",
+        "slug": "in-state-news"
+      },
+      {
+        "label": "IN Government",
+        "slug": "in-government"
+      },
+      {
+        "label": "IN Schemes And Welfare",
+        "slug": "in-schemes-and-welfare"
+      },
+      {
+        "label": "IN Elections",
+        "slug": "in-elections"
+      },
+      {
+        "label": "IN Defense And Security",
+        "slug": "in-defense-and-security"
+      },
+      {
+        "label": "IN Law And Justice",
+        "slug": "in-law-and-justice"
+      },
+      {
+        "label": "IN Infrastructure",
+        "slug": "in-infrastructure"
+      },
+      {
+        "label": "IN Economy",
+        "slug": "in-economy"
+      }
+    ]
+  },
+  {
+    "label": "United States",
+    "slug": "united-states",
+    "subs": [
+      {
+        "label": "US National",
+        "slug": "us-national"
+      },
+      {
+        "label": "US Politics",
+        "slug": "us-politics"
+      },
+      {
+        "label": "US White House",
+        "slug": "us-white-house"
+      },
+      {
+        "label": "US Congress",
+        "slug": "us-congress"
+      },
+      {
+        "label": "US Federal Updates",
+        "slug": "us-federal-updates"
+      },
+      {
+        "label": "US Elections",
+        "slug": "us-elections"
+      },
+      {
+        "label": "US Defense",
+        "slug": "us-defense"
+      },
+      {
+        "label": "US Law And Justice",
+        "slug": "us-law-and-justice"
+      },
+      {
+        "label": "US Economy",
+        "slug": "us-economy"
+      },
+      {
+        "label": "US Society",
+        "slug": "us-society"
+      }
+    ]
+  },
+  {
+    "label": "United Kingdom",
+    "slug": "united-kingdom",
+    "subs": [
+      {
+        "label": "UK National",
+        "slug": "uk-national"
+      },
+      {
+        "label": "UK Politics",
+        "slug": "uk-politics"
+      },
+      {
+        "label": "UK Downing Street",
+        "slug": "uk-downing-street"
+      },
+      {
+        "label": "UK Parliament",
+        "slug": "uk-parliament"
+      },
+      {
+        "label": "UK Royal Family",
+        "slug": "uk-royal-family"
+      },
+      {
+        "label": "UK Elections",
+        "slug": "uk-elections"
+      },
+      {
+        "label": "UK Defense",
+        "slug": "uk-defense"
+      },
+      {
+        "label": "UK Law And Justice",
+        "slug": "uk-law-and-justice"
+      },
+      {
+        "label": "UK Economy",
+        "slug": "uk-economy"
+      },
+      {
+        "label": "UK Society",
+        "slug": "uk-society"
+      }
+    ]
+  },
+  {
+    "label": "World",
+    "slug": "world",
+    "subs": [
+      {
+        "label": "World Asia Pacific",
+        "slug": "world-asia-pacific"
+      },
+      {
+        "label": "World Europe",
+        "slug": "world-europe"
+      },
+      {
+        "label": "World Middle East",
+        "slug": "world-middle-east"
+      },
+      {
+        "label": "World Africa",
+        "slug": "world-africa"
+      },
+      {
+        "label": "World Latin America",
+        "slug": "world-latin-america"
+      },
+      {
+        "label": "World Global Affairs",
+        "slug": "world-global-affairs"
+      },
+      {
+        "label": "World Geopolitics",
+        "slug": "world-geopolitics"
+      },
+      {
+        "label": "World Diplomacy",
+        "slug": "world-diplomacy"
+      },
+      {
+        "label": "World Conflicts",
+        "slug": "world-conflicts"
+      },
+      {
+        "label": "World International Organizations",
+        "slug": "world-international-organizations"
+      }
+    ]
+  },
+  {
+    "label": "Trending",
+    "slug": "trending",
+    "subs": [
+      {
+        "label": "Breaking News",
+        "slug": "breaking-news"
+      },
+      {
+        "label": "Top Stories",
+        "slug": "top-stories"
+      },
+      {
+        "label": "Trending Now",
+        "slug": "trending-now"
+      },
+      {
+        "label": "Viral News",
+        "slug": "viral-news"
+      },
+      {
+        "label": "Most Read",
+        "slug": "most-read"
+      },
+      {
+        "label": "Editor Picks",
+        "slug": "editor-picks"
+      },
+      {
+        "label": "Explainers",
+        "slug": "explainers"
+      },
+      {
+        "label": "What To Know",
+        "slug": "what-to-know"
+      },
+      {
+        "label": "Social Buzz",
+        "slug": "social-buzz"
+      },
+      {
+        "label": "Weekend Roundup",
+        "slug": "weekend-roundup"
+      }
+    ]
+  },
+  {
+    "label": "Technology",
+    "slug": "technology",
+    "subs": [
+      {
+        "label": "AI And Future",
+        "slug": "ai-and-future"
+      },
+      {
+        "label": "Cybersecurity",
+        "slug": "cybersecurity"
+      },
+      {
+        "label": "Consumer Tech",
+        "slug": "consumer-tech"
+      },
+      {
+        "label": "Gadgets And Reviews",
+        "slug": "gadgets-and-reviews"
+      },
+      {
+        "label": "Big Tech",
+        "slug": "big-tech"
+      },
+      {
+        "label": "Startups",
+        "slug": "startups"
+      },
+      {
+        "label": "Space Tech",
+        "slug": "space-tech"
+      },
+      {
+        "label": "Robotics",
+        "slug": "robotics"
+      },
+      {
+        "label": "Emerging Tech",
+        "slug": "emerging-tech"
+      },
+      {
+        "label": "Software And Apps",
+        "slug": "software-and-apps"
+      }
+    ]
+  },
+  {
+    "label": "Business",
+    "slug": "business",
+    "subs": [
+      {
+        "label": "Global Economy",
+        "slug": "global-economy"
+      },
+      {
+        "label": "Markets And Finance",
+        "slug": "markets-and-finance"
+      },
+      {
+        "label": "Corporate News",
+        "slug": "corporate-news"
+      },
+      {
+        "label": "Banking",
+        "slug": "banking"
+      },
+      {
+        "label": "Crypto And Web3",
+        "slug": "crypto-and-web3"
+      },
+      {
+        "label": "Real Estate",
+        "slug": "real-estate"
+      },
+      {
+        "label": "Energy And Commodities",
+        "slug": "energy-and-commodities"
+      },
+      {
+        "label": "Trade And Commerce",
+        "slug": "trade-and-commerce"
+      },
+      {
+        "label": "Wealth And Investing",
+        "slug": "wealth-and-investing"
+      },
+      {
+        "label": "Business Insights",
+        "slug": "business-insights"
+      }
+    ]
+  },
+  {
+    "label": "Defense",
+    "slug": "defense",
+    "subs": [
+      {
+        "label": "Defense India",
+        "slug": "defense-india"
+      },
+      {
+        "label": "Defense US",
+        "slug": "defense-us"
+      },
+      {
+        "label": "Defense UK",
+        "slug": "defense-uk"
+      },
+      {
+        "label": "Defense China",
+        "slug": "defense-china"
+      },
+      {
+        "label": "Defense Russia",
+        "slug": "defense-russia"
+      },
+      {
+        "label": "Military Tech",
+        "slug": "military-tech"
+      },
+      {
+        "label": "Air Power",
+        "slug": "air-power"
+      },
+      {
+        "label": "Naval Affairs",
+        "slug": "naval-affairs"
+      },
+      {
+        "label": "Strategic Weapons",
+        "slug": "strategic-weapons"
+      },
+      {
+        "label": "Defense Analysis",
+        "slug": "defense-analysis"
+      }
+    ]
+  },
+  {
+    "label": "Exclusives",
+    "slug": "exclusives",
+    "subs": [
+      {
+        "label": "Investigations",
+        "slug": "investigations"
+      },
+      {
+        "label": "Intelligence Ops",
+        "slug": "intelligence-ops"
+      },
+      {
+        "label": "Covert Missions",
+        "slug": "covert-missions"
+      },
+      {
+        "label": "Dark History",
+        "slug": "dark-history"
+      },
+      {
+        "label": "Deep Dives",
+        "slug": "deep-dives"
+      },
+      {
+        "label": "Special Reports",
+        "slug": "special-reports"
+      },
+      {
+        "label": "Insider Access",
+        "slug": "insider-access"
+      },
+      {
+        "label": "Strategic Affairs",
+        "slug": "strategic-affairs"
+      },
+      {
+        "label": "Longform Analysis",
+        "slug": "longform-analysis"
+      },
+      {
+        "label": "Untold Stories",
+        "slug": "untold-stories"
+      }
+    ]
+  },
+  {
+    "label": "Science And Health",
+    "slug": "science-and-health",
+    "subs": [
+      {
+        "label": "Space And Astronomy",
+        "slug": "space-and-astronomy"
+      },
+      {
+        "label": "Medical Research",
+        "slug": "medical-research"
+      },
+      {
+        "label": "Public Health",
+        "slug": "public-health"
+      },
+      {
+        "label": "Climate Change",
+        "slug": "climate-change"
+      },
+      {
+        "label": "Environment",
+        "slug": "environment"
+      },
+      {
+        "label": "Biotechnology",
+        "slug": "biotechnology"
+      },
+      {
+        "label": "Physics And Space",
+        "slug": "physics-and-space"
+      },
+      {
+        "label": "Scientific Breakthroughs",
+        "slug": "scientific-breakthroughs"
+      },
+      {
+        "label": "Health Policy",
+        "slug": "health-policy"
+      },
+      {
+        "label": "Future Science",
+        "slug": "future-science"
+      }
+    ]
+  }
+]

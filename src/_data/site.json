@@ -1,1 +1,21 @@
-
+{
+  "name": "Earth Insider News",
+  "shortName": "Earth Insider",
+  "tagline": "Latest News & Trending Updates",
+  "domain": "www.earthinsider.in",
+  "url": "https://www.earthinsider.in",
+  "description": "Stay updated with the latest news, trending stories, useful updates, and important happenings from India and around the world with Earth Insider News.",
+  "logo": "https://lh3.googleusercontent.com/aida/AEtjO1V56k3Rexps8xPPbKVglaevwrmEbQVfBLBqdTF3ksW3070v4vpAbxhRGOIFd3RgVkzYdpLZ5FjEmsfp37MPosKf4ctmyPjcCoCsE2DrHIREsCX9GbYCLTTsI2-Fu72f-cn-V6ABGDiyFJIqobtprSHgqd7rx6gyVrziuQXw3d17g_CYBLpOt-_Qw7WiWbNXMh-PVREiuCi0C6JJcwyIm_zOcEksZI1TgGqTa3sX-QfHD0UR9idCOC9CIVI",
+  "network": [
+    { "name": "Home Insider", "url": "https://home.earthinsider.in", "description": "Practical home cleaning and organization guides.", "icon": "cleaning_services" },
+    { "name": "Garden Insider", "url": "https://garden.earthinsider.in", "description": "Regenerative gardening, soil health, and heirloom seed saving.", "icon": "potted_plant" },
+    { "name": "Kitchen Insider", "url": "https://kitchen.earthinsider.in", "description": "Fermentation, pantry preservation, and cookware care.", "icon": "skillet" }
+  ],
+  "social": {
+    "telegram": "#",
+    "discord": "#",
+    "instagram": "#",
+    "youtube": "#",
+    "x": "#"
+  }
+}
