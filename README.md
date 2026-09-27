@@ -11,9 +11,13 @@ anything that breaks.
 ## Migration results
 
 - **1736** entries found in the Blogger export (`feed.atom`)
-- **1687** live posts successfully migrated into `src/_posts/` as markdown files
-  with front matter, original URLs preserved exactly (`permalink` matches the
-  old Blogger path, e.g. `/2026/07/slug-name.html` — no redirects needed)
+- **1687** live posts successfully migrated — all stored in **one single file**
+  (`src/_data/migratedPosts.json`) rather than 1687 individual markdown files.
+  Eleventy's pagination generates all 1687 pages from this single file via
+  `src/migrated-post.njk`. Original URLs preserved exactly — no redirects needed.
+- New posts from n8n automation go into `src/_posts/` as individual `.md` files
+  (same as before). There will only ever be a handful of these, so no upload
+  problem.
 - **49** entries intentionally skipped: 14 drafts, 18 trashed posts, 16 Blogger
   Pages (About/Contact-type pages, not blog posts — see "Not yet done" below),
   1 stray comment entry
