@@ -29,7 +29,7 @@ title: ""
 </a>
 <div class="p-4 sm:p-6 md:p-8 flex flex-col gap-4">
 <p class="font-body-lead text-body-lead text-on-surface-variant max-w-[68ch]">{{ featured.data.excerpt }}</p>
-<a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors w-fit" href="{{ featured.url }}"><span>Read Full Guide</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+<a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors w-fit" href="{{ featured.url }}"><span>Read Post</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
 </div>
 </article>
 {% endif %}
@@ -43,7 +43,7 @@ title: ""
 <a class="font-label-md text-label-md text-primary hover:text-primary-container inline-flex items-center gap-1 transition-colors" href="/all-posts/"><span>View all</span><span class="material-symbols-outlined text-[16px]">chevron_right</span></a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-{% for post in latest | limit(6) %}{{ macros.articleCard(post) }}{% endfor %}
+{% for post in latest | limit(25) %}{{ macros.articleCard(post) }}{% endfor %}
 </div>
 </section>
 

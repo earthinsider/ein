@@ -1,0 +1,21 @@
+---
+layout: post.njk
+pagination:
+  data: migratedPosts
+  size: 1
+  alias: post
+addAllPagesToCollections: true
+eleventyComputed:
+  title: "{{ post.title }}"
+  excerpt: "{{ post.excerpt }}"
+  date: "{{ post.date }}"
+  categorySlug: "{{ post.categorySlug }}"
+  categoryLabel: "{{ post.categoryLabel }}"
+  subCategorySlug: "{{ post.subCategorySlug }}"
+  subCategoryLabel: "{{ post.subCategoryLabel }}"
+  image: "{{ post.image }}"
+  imageAlt: "{{ post.imageAlt }}"
+  migrated: "{{ post.migrated }}"
+  permalink: "{{ post.permalink }}"
+---
+{{ post.content | safe }}
