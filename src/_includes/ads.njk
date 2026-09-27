@@ -1,6 +1,6 @@
 {# Adsterra — responsive banner: 728x90 desktop / 320x50 mobile #}
 {% macro responsiveBanner() %}
-<div style="text-align:center;margin:1rem 0;">
+<div class="ad-slot" style="text-align:center;margin:1rem 0;">
 <script>
 (function(){
   var isMobile = window.matchMedia('(max-width: 767px)').matches;
@@ -17,9 +17,9 @@
 </div>
 {% endmacro %}
 
-{# Adsterra — 300x250 sidebar box #}
+{# Adsterra — 300x250 box #}
 {% macro box300x250() %}
-<div style="text-align:center;margin:1rem 0;">
+<div class="ad-slot" style="text-align:center;margin:1rem 0;">
 <script>
   atOptions = { 'key' : 'b6fbb07e0532e23cdd18470e8d671637', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
 </script>
@@ -27,10 +27,48 @@
 </div>
 {% endmacro %}
 
-{# Adsterra — Native Banner. IMPORTANT: this exact zone must render on the page ONCE ONLY —
-   duplicating it (e.g. including this macro twice in the same page) is invalid per Adsterra:
-   only the first instance renders and the rest silently fail. Use only on the homepage. #}
+{# Adsterra — 160x300 tall box (good for in-content, narrower sidebars) #}
+{% macro box160x300() %}
+<div class="ad-slot" style="text-align:center;margin-bottom:1rem;">
+<script>
+  atOptions = { 'key' : '637c0ee1c40bcaa3e37996c5f86c5549', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
+</script>
+<script async="async" src="https://hystericallikingdowntown.com/637c0ee1c40bcaa3e37996c5f86c5549/invoke.js"></script>
+</div>
+{% endmacro %}
+
+{# Adsterra — 468x60 footer banner #}
+{% macro banner468x60() %}
+<div class="ad-slot" style="text-align:center;">
+<script>
+  atOptions = { 'key' : 'c283a1ca30d6ff97915c62e32fc8f182', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
+</script>
+<script async="async" src="https://hystericallikingdowntown.com/c283a1ca30d6ff97915c62e32fc8f182/invoke.js"></script>
+</div>
+{% endmacro %}
+
+{# Adsterra — 160x600 skyscraper, desktop-only (fires only at lg+ width so it never
+   loads on mobile, where a tall narrow banner performs poorly and would also risk
+   viewport overflow). Best used once per page, in a sticky sidebar slot. #}
+{% macro skyscraper160x600() %}
+<div class="ad-slot" style="text-align:center;">
+<script>
+if (window.matchMedia('(min-width: 992px)').matches) {
+  window.atOptions = {'key':'d9d74dbd11a016ff433ffb8f6839bcc0','format':'iframe','height':600,'width':160,'params':{}};
+  var s = document.createElement('script');
+  s.src = 'https://hystericallikingdowntown.com/d9d74dbd11a016ff433ffb8f6839bcc0/invoke.js';
+  document.currentScript.parentNode.insertBefore(s, document.currentScript.nextSibling);
+}
+</script>
+</div>
+{% endmacro %}
+
+{# Adsterra — Native Banner. IMPORTANT: this exact zone must render on the page ONCE ONLY
+   across the whole site load — duplicating it renders a blank/failed slot the second
+   time. Use on the homepage only. #}
 {% macro nativeBanner() %}
+<div class="ad-slot">
 <script async="async" data-cfasync="false" src="https://hystericallikingdowntown.com/6810d457285656dc514536aeea46e59f/invoke.js"></script>
 <div id="container-6810d457285656dc514536aeea46e59f"></div>
+</div>
 {% endmacro %}

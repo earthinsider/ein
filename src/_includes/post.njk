@@ -27,8 +27,11 @@ templateClass: post
 {% if excerpt %}<p class="font-body-lead text-body-lead text-on-surface-variant max-w-3xl mb-8 leading-relaxed">{{ excerpt }}</p>{% endif %}
 <div class="flex flex-wrap items-center justify-between gap-3 py-3 bg-surface-container-low rounded-xl px-5">
 <span class="font-label-md text-label-md text-on-surface-variant">Reviewed by the {{ site.shortName }} Editorial Team</span>
-<div class="flex items-center gap-2 shrink-0">
-<span class="font-label-caps text-label-xs text-on-surface-variant uppercase tracking-wider mr-1 hidden sm:inline">Share</span>
+<div class="flex items-center gap-2 shrink-0 flex-wrap">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mr-1 hidden sm:inline">Share</span>
+<a aria-label="Share on X" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all shadow-sm" id="share-x" href="#" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">close</span></a>
+<a aria-label="Share on Telegram" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-[#2AABEE] hover:bg-surface-container-high transition-all shadow-sm" id="share-tg" href="#" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">send</span></a>
+<a aria-label="Share on WhatsApp" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-[#25D366] hover:bg-surface-container-high transition-all shadow-sm" id="share-wa" href="#" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span></a>
 <div class="relative inline-block">
 <button aria-label="Copy link" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all shadow-sm" id="copy-btn" type="button"><span class="material-symbols-outlined text-[18px]">link</span></button>
 <span class="opacity-0 pointer-events-none transition-opacity duration-200 absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-inverse-surface text-inverse-on-surface font-label-xs text-label-xs whitespace-nowrap shadow-md" id="copy-tip">Copied!</span>
@@ -58,6 +61,8 @@ templateClass: post
 {{ content | safe }}
 </div>
 </div>
+
+{{ ads.responsiveBanner() }}
 
 <section class="bg-surface-container-lowest rounded-xl p-5 sm:p-6 mt-10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
 <div><h4 class="font-headline-sm text-headline-sm text-on-surface">Was this guide helpful?</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Your feedback shapes what we cover next.</p></div>
@@ -137,6 +142,17 @@ templateClass: post
     });
   }
 
+  // social share links
+  var url = encodeURIComponent(window.location.href);
+  var title = encodeURIComponent(document.title);
+  var sx = document.getElementById('share-x');
+  var stg = document.getElementById('share-tg');
+  var swa = document.getElementById('share-wa');
+  if (sx) sx.href = 'https://x.com/intent/tweet?text=' + title + '&url=' + url;
+  if (stg) stg.href = 'https://t.me/share/url?url=' + url + '&text=' + title;
+  if (swa) swa.href = 'https://api.whatsapp.com/send?text=' + title + '%20' + url;
+
+  // copy link
   var copyBtn = document.getElementById('copy-btn');
   var copyTip = document.getElementById('copy-tip');
   if (copyBtn) copyBtn.addEventListener('click', function() {
@@ -145,13 +161,22 @@ templateClass: post
     setTimeout(function(){ copyTip.classList.remove('opacity-100'); copyTip.classList.add('opacity-0'); }, 2000);
   });
 
+  // bookmark with localStorage persistence
   var bookmarkBtn = document.getElementById('bookmark-btn');
   var bookmarkIcon = document.getElementById('bookmark-icon');
-  if (bookmarkBtn) bookmarkBtn.addEventListener('click', function() {
-    var saved = bookmarkIcon.textContent === 'bookmark';
-    bookmarkIcon.textContent = saved ? 'bookmark_border' : 'bookmark';
-    bookmarkBtn.classList.toggle('text-primary');
-  });
+  var bmKey = 'ei_bookmark_' + window.location.pathname.replace(/\//g,'_');
+  if (bookmarkBtn) {
+    if (localStorage.getItem(bmKey)) {
+      bookmarkIcon.textContent = 'bookmark';
+      bookmarkBtn.classList.add('text-primary');
+    }
+    bookmarkBtn.addEventListener('click', function() {
+      var saved = bookmarkIcon.textContent === 'bookmark';
+      bookmarkIcon.textContent = saved ? 'bookmark_border' : 'bookmark';
+      bookmarkBtn.classList.toggle('text-primary', !saved);
+      if (saved) { localStorage.removeItem(bmKey); } else { localStorage.setItem(bmKey, '1'); }
+    });
+  }
 
   var yes = document.getElementById('feedback-yes'), no = document.getElementById('feedback-no');
   var voted = false;
