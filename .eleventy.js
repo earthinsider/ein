@@ -4,14 +4,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/ads.txt");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
 
-  // New posts added by n8n automation (individual .md files)
+  // New posts added by n8n automation
   eleventyConfig.addCollection("newPosts", function (collectionApi) {
     return collectionApi.getFilteredByGlob("src/_posts/*.md");
   });
 
-  // All posts: migrated (from JSON via migrated-post.njk pagination) + new .md posts
-  // addAllPagesToCollections: true on migrated-post.njk means Eleventy already adds them;
-  // this collection merges both sources sorted by date descending for templates.
+  // All posts merged and sorted newest first
   eleventyConfig.addCollection("posts", function (collectionApi) {
     const all = collectionApi.getAll().filter(function (item) {
       return (
@@ -24,10 +22,12 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  // ---- Filters ----
   eleventyConfig.addFilter("dateDisplay", function (dateObj) {
     if (!dateObj) return "";
-    var d = new Date(dateObj);
-    return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    return new Date(dateObj).toLocaleDateString("en-US", {
+      year: "numeric", month: "long", day: "numeric"
+    });
   });
 
   eleventyConfig.addFilter("isoDate", function (dateObj) {
@@ -99,4 +99,3 @@ module.exports = function (eleventyConfig) {
     templateFormats: ["njk", "md", "html"],
   };
 };
-    
