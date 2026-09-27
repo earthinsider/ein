@@ -29,6 +29,14 @@
 <style>@layer base{html,body{margin:0;padding:0;overflow-x:hidden;max-width:100vw;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}img{max-width:100%;height:auto;}}::-webkit-scrollbar{display:none;}
 .ad-slot{max-width:100%;overflow:hidden;}
 .ad-slot iframe{max-width:100%;}
+/* Blogger content sanitization: override inline styles that cause scroll issues */
+#article-body *{max-width:100%;box-sizing:border-box;}
+#article-body div[style*="width"]{width:auto!important;max-width:100%!important;}
+#article-body div[style*="float"]{float:none!important;}
+#article-body iframe,#article-body table{max-width:100%;overflow-x:auto;display:block;}
+#article-body img{max-width:100%!important;height:auto!important;width:auto!important;}
+#article-body div.separator{text-align:center!important;}
+#article-body a[href*="blogger.com"] img{max-width:100%!important;}
 #article-body h2{font-family:Manrope,sans-serif;font-weight:700;font-size:28px;line-height:36px;letter-spacing:-0.02em;color:#1c1b1b;margin:2rem 0 1rem;scroll-margin-top:6rem;}
 #article-body h3{font-family:Manrope,sans-serif;font-weight:600;font-size:20px;line-height:28px;color:#1c1b1b;margin:1.5rem 0 0.75rem;}
 #article-body p{margin:0 0 1.25rem;}
