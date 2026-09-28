@@ -29,7 +29,18 @@
 <style>@layer base{html,body{margin:0;padding:0;overflow-x:hidden;max-width:100vw;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}img{max-width:100%;height:auto;}}::-webkit-scrollbar{display:none;}
 .ad-slot{max-width:100%;overflow:hidden;}
 .ad-slot iframe{max-width:100%;}
-/* Blogger content sanitization: override inline styles that cause scroll issues */
+/* Blogger content sanitization */
+/* Block tap-to-full-image: Blogger wraps every img in an <a> pointing to the
+   raw full-size image. On mobile this opens the image in the browser and zooms out.
+   pointer-events:none on the anchor disables the tap entirely while keeping
+   the img visible — the image itself stays interactive (long-press to save). */
+#article-body .separator a[imageanchor],
+#article-body .separator a[href*="blogger.googleusercontent.com"] {
+  pointer-events: none;
+  cursor: default;
+  display: block;
+}
+/* Belt-and-suspenders: also kill via JS (see post.njk script) */
 #article-body *{max-width:100%;box-sizing:border-box;}
 #article-body div[style*="width"]{width:auto!important;max-width:100%!important;}
 #article-body div[style*="float"]{float:none!important;}

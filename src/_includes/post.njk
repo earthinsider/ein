@@ -178,6 +178,14 @@ templateClass: post
     });
   }
 
+  // Belt-and-suspenders: disable Blogger's image anchor tags that open
+  // the raw full-size image in the browser, causing unwanted page zoom.
+  document.querySelectorAll('#article-body .separator a[imageanchor], #article-body .separator a').forEach(function(a) {
+    a.addEventListener('click', function(e) { e.preventDefault(); });
+    a.style.pointerEvents = 'none';
+    a.style.cursor = 'default';
+  });
+
   var yes = document.getElementById('feedback-yes'), no = document.getElementById('feedback-no');
   var voted = false;
   if (yes) yes.addEventListener('click', function(){ if(!voted){voted=true; yes.classList.add('bg-primary','text-on-primary');} });
