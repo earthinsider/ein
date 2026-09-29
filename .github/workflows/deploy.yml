@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-                - name: Install dependencies
+      - name: Install dependencies
         run: npm install --prefer-offline
       - name: Build Tailwind CSS
         run: npx tailwindcss -i ./src/assets/input.css -o ./src/assets/style.css --minify
