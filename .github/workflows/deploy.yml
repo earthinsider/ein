@@ -22,8 +22,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
-      - run: npm run build
+                - name: Install dependencies
+        run: npm install --prefer-offline
+      - name: Build Tailwind CSS
+        run: npx tailwindcss -i ./src/assets/input.css -o ./src/assets/style.css --minify
+      - name: Build Eleventy site
+        run: npx eleventy
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
