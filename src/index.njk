@@ -16,9 +16,9 @@ title: ""
 <article class="group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
 <a href="{{ featured.url }}">
 <div class="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-surface-container-high">
-<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]" alt="{{ featured.data.imageAlt or featured.data.title }}" src="{{ featured.data.image }}"/>
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]" alt="{{ featured.data.imageAlt or featured.data.title }}" src="{{ featured.data.image }}" fetchpriority="high" loading="eager" decoding="async" width="1200" height="750"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
-<div class="absolute top-3 left-3 sm:top-4 sm:left-4"><span class="inline-flex items-center px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-xs text-label-xs uppercase tracking-wider font-bold">Latest Guide</span></div>
+<div class="absolute top-3 left-3 sm:top-4 sm:left-4"><span class="inline-flex items-center px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-xs text-label-xs uppercase tracking-wider font-bold">Latest Post</span></div>
 <div class="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 text-on-primary">
 <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2 font-label-xs text-[10px] sm:text-label-xs uppercase tracking-widest text-on-primary/85">
 <span class="text-primary-fixed font-bold">{{ featured.data.categoryLabel }}</span><span>•</span><span>{{ featured.templateContent | readingTime }} min read</span>
@@ -39,7 +39,7 @@ title: ""
 
 <section class="flex flex-col gap-6">
 <div class="flex items-end justify-between">
-<div><span class="font-label-xs text-label-xs uppercase tracking-widest text-primary font-bold block mb-1">Dispatch Stream</span><h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Latest Articles</h2></div>
+<div><span class="font-label-xs text-label-xs uppercase tracking-widest text-primary font-bold block mb-1">Latest Posts</span><h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Latest Posts</h2></div>
 <a class="font-label-md text-label-md text-primary hover:text-primary-container inline-flex items-center gap-1 transition-colors" href="/all-posts/"><span>View all</span><span class="material-symbols-outlined text-[16px]">chevron_right</span></a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
