@@ -1,74 +1,72 @@
-{# Adsterra — responsive banner: 728x90 desktop / 320x50 mobile #}
+{# Responsive banner: 728x90 desktop / 320x50 mobile
+   Container reserves space (prevents CLS) + constrains to viewport width #}
 {% macro responsiveBanner() %}
-<div class="ad-slot" style="text-align:center;margin:1rem 0;">
+<div class="ad-slot ad-slot-banner my-4 mx-auto" aria-label="Advertisement" role="complementary">
 <script>
 (function(){
-  var isMobile = window.matchMedia('(max-width: 767px)').matches;
-  window.atOptions = isMobile
-    ? { 'key': 'e333a858ccc46f467f94d3f59ace1b53', 'format': 'iframe', 'height': 50, 'width': 320, 'params': {} }
-    : { 'key': '540f4484d7bafea63e4d187dbd65606f', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
+  var m = window.matchMedia('(max-width: 767px)').matches;
+  window.atOptions = m
+    ? {'key':'e333a858ccc46f467f94d3f59ace1b53','format':'iframe','height':50,'width':320,'params':{}}
+    : {'key':'540f4484d7bafea63e4d187dbd65606f','format':'iframe','height':90,'width':728,'params':{}};
   var s = document.createElement('script');
-  s.src = isMobile
+  s.src = m
     ? 'https://hystericallikingdowntown.com/e333a858ccc46f467f94d3f59ace1b53/invoke.js'
     : 'https://hystericallikingdowntown.com/540f4484d7bafea63e4d187dbd65606f/invoke.js';
+  s.async = true;
   document.currentScript.parentNode.insertBefore(s, document.currentScript.nextSibling);
 })();
 </script>
 </div>
 {% endmacro %}
 
-{# Adsterra — 300x250 box #}
+{# 300x250 box — sidebar only, hidden on mobile to avoid overflow #}
 {% macro box300x250() %}
-<div class="ad-slot" style="text-align:center;margin:1rem 0;">
+<div class="ad-slot ad-slot-box hidden md:block mx-auto" aria-label="Advertisement" role="complementary">
 <script>
-  atOptions = { 'key' : 'b6fbb07e0532e23cdd18470e8d671637', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+  atOptions={'key':'b6fbb07e0532e23cdd18470e8d671637','format':'iframe','height':250,'width':300,'params':{}};
 </script>
-<script src="https://hystericallikingdowntown.com/b6fbb07e0532e23cdd18470e8d671637/invoke.js"></script>
+<script async src="https://hystericallikingdowntown.com/b6fbb07e0532e23cdd18470e8d671637/invoke.js"></script>
 </div>
 {% endmacro %}
 
-{# Adsterra — 160x300 tall box (good for in-content, narrower sidebars) #}
+{# 160x300 tall box — in-content use #}
 {% macro box160x300() %}
-<div class="ad-slot" style="text-align:center;margin-bottom:1rem;">
+<div class="ad-slot ad-slot-tall mx-auto" aria-label="Advertisement" role="complementary">
 <script>
-  atOptions = { 'key' : '637c0ee1c40bcaa3e37996c5f86c5549', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
+  atOptions={'key':'637c0ee1c40bcaa3e37996c5f86c5549','format':'iframe','height':300,'width':160,'params':{}};
 </script>
-<script async="async" src="https://hystericallikingdowntown.com/637c0ee1c40bcaa3e37996c5f86c5549/invoke.js"></script>
+<script async src="https://hystericallikingdowntown.com/637c0ee1c40bcaa3e37996c5f86c5549/invoke.js"></script>
 </div>
 {% endmacro %}
 
-{# Adsterra — 468x60 footer banner #}
+{# 468x60 banner — footer / between sections #}
 {% macro banner468x60() %}
-<div class="ad-slot" style="text-align:center;">
+<div class="ad-slot mx-auto" style="min-height:60px" aria-label="Advertisement" role="complementary">
 <script>
-  atOptions = { 'key' : 'c283a1ca30d6ff97915c62e32fc8f182', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
+  atOptions={'key':'c283a1ca30d6ff97915c62e32fc8f182','format':'iframe','height':60,'width':468,'params':{}};
 </script>
-<script async="async" src="https://hystericallikingdowntown.com/c283a1ca30d6ff97915c62e32fc8f182/invoke.js"></script>
+<script async src="https://hystericallikingdowntown.com/c283a1ca30d6ff97915c62e32fc8f182/invoke.js"></script>
 </div>
 {% endmacro %}
 
-{# Adsterra — 160x600 skyscraper, desktop-only (fires only at lg+ width so it never
-   loads on mobile, where a tall narrow banner performs poorly and would also risk
-   viewport overflow). Best used once per page, in a sticky sidebar slot. #}
+{# 160x600 skyscraper — desktop sidebar only, never loads on mobile #}
 {% macro skyscraper160x600() %}
-<div class="ad-slot" style="text-align:center;">
+<div class="ad-slot ad-slot-sky hidden lg:block mx-auto" aria-label="Advertisement" role="complementary">
 <script>
-if (window.matchMedia('(min-width: 992px)').matches) {
-  window.atOptions = {'key':'d9d74dbd11a016ff433ffb8f6839bcc0','format':'iframe','height':600,'width':160,'params':{}};
-  var s = document.createElement('script');
-  s.src = 'https://hystericallikingdowntown.com/d9d74dbd11a016ff433ffb8f6839bcc0/invoke.js';
-  document.currentScript.parentNode.insertBefore(s, document.currentScript.nextSibling);
+if(window.matchMedia('(min-width:992px)').matches){
+  window.atOptions={'key':'d9d74dbd11a016ff433ffb8f6839bcc0','format':'iframe','height':600,'width':160,'params':{}};
+  var s=document.createElement('script');s.async=true;
+  s.src='https://hystericallikingdowntown.com/d9d74dbd11a016ff433ffb8f6839bcc0/invoke.js';
+  document.currentScript.parentNode.insertBefore(s,document.currentScript.nextSibling);
 }
 </script>
 </div>
 {% endmacro %}
 
-{# Adsterra — Native Banner. IMPORTANT: this exact zone must render on the page ONCE ONLY
-   across the whole site load — duplicating it renders a blank/failed slot the second
-   time. Use on the homepage only. #}
+{# Native Banner — use ONCE on homepage only #}
 {% macro nativeBanner() %}
-<div class="ad-slot">
-<script async="async" data-cfasync="false" src="https://hystericallikingdowntown.com/6810d457285656dc514536aeea46e59f/invoke.js"></script>
+<div class="ad-slot ad-slot-native my-6" aria-label="Advertisement" role="complementary">
+<script async data-cfasync="false" src="https://hystericallikingdowntown.com/6810d457285656dc514536aeea46e59f/invoke.js"></script>
 <div id="container-6810d457285656dc514536aeea46e59f"></div>
 </div>
 {% endmacro %}

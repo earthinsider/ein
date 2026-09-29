@@ -65,7 +65,7 @@ templateClass: post
 {{ ads.responsiveBanner() }}
 
 <section class="bg-surface-container-lowest rounded-xl p-5 sm:p-6 mt-10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-<div><h4 class="font-headline-sm text-headline-sm text-on-surface">Was this guide helpful?</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Your feedback shapes what we cover next.</p></div>
+<div><h4 class="font-headline-sm text-headline-sm text-on-surface">Was this post helpful?</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Your feedback shapes what we cover next.</p></div>
 <div class="flex items-center gap-2" id="feedback-container">
 <button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors" id="feedback-yes" type="button"><span class="material-symbols-outlined text-[18px]">thumb_up</span> Yes</button>
 <button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="feedback-no" type="button"><span class="material-symbols-outlined text-[18px]">thumb_down</span> No</button>
@@ -178,7 +178,24 @@ templateClass: post
     });
   }
 
-  // Belt-and-suspenders: disable Blogger's image anchor tags that open
+  // Resize Blogger images: replace s16000 (raw full-size) with s1200 (fast web size)
+  // and add lazy loading + alt text fallback to all article body images
+  document.querySelectorAll('#article-body img').forEach(function(img, i) {
+    // Resize: s16000 → s1200 (stays on Blogger CDN, much smaller file)
+    if (img.src && img.src.includes('blogger.googleusercontent.com')) {
+      img.src = img.src.replace(/\/s\d+\//, '/s1200/');
+      if (img.srcset) img.srcset = img.srcset.replace(/\/s\d+\//g, '/s1200/');
+    }
+    // Lazy load all images except the first (which may be above-fold)
+    if (i > 0) img.loading = 'lazy';
+    img.decoding = 'async';
+    // Accessibility: ensure alt text exists
+    if (!img.alt || img.alt.trim() === '') {
+      img.alt = document.querySelector('h1') ? document.querySelector('h1').textContent.trim() : 'Article image';
+    }
+  });
+
+    // Belt-and-suspenders: disable Blogger's image anchor tags that open
   // the raw full-size image in the browser, causing unwanted page zoom.
   document.querySelectorAll('#article-body .separator a[imageanchor], #article-body .separator a').forEach(function(a) {
     a.addEventListener('click', function(e) { e.preventDefault(); });
