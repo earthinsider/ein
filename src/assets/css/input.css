@@ -1,1 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* ── Base resets ────────────────────────────────────────────── */
+@layer base {
+  html {
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
+    touch-action: pan-y;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    touch-action: pan-y;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  :focus-visible {
+    outline: 2px solid #006033;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child  { margin-bottom: 0 !important; }
+  ::-webkit-scrollbar { display: none; }
+}
+
+/* ── Skip link (accessibility) ──────────────────────────────── */
+@layer utilities {
+  .skip-link {
+    @apply absolute -top-10 left-2 z-[9999] bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-semibold transition-all;
+  }
+  .skip-link:focus {
+    @apply top-2;
+  }
+}
+
+/* ── Ad slot containers ─────────────────────────────────────── */
+.ad-slot {
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+/* Reserve space for each ad format to prevent layout shift (CLS) */
+.ad-slot-banner  { min-height: 50px; }   /* 320x50 mobile */
+.ad-slot-lb      { min-height: 90px; }   /* 728x90 desktop leaderboard */
+.ad-slot-box     { min-height: 250px; min-width: 300px; } /* 300x250 */
+.ad-slot-tall    { min-height: 300px; }  /* 160x300 */
+.ad-slot-sky     { min-height: 600px; }  /* 160x600 skyscraper */
+.ad-slot-native  { min-height: 180px; }  /* native banner variable */
+
+@media (min-width: 768px) {
+  .ad-slot-banner { min-height: 90px; }
+}
+
+/* ── Article body (Blogger content sanitisation) ────────────── */
+#article-body * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+#article-body div[style*="width"]  { width: auto !important; max-width: 100% !important; }
+#article-body div[style*="float"]  { float: none !important; }
+#article-body iframe               { max-width: 100%; overflow-x: auto; display: block; }
+#article-body table                { max-width: 100%; overflow-x: auto; display: block; border-collapse: collapse; width: 100%; margin: 1.5rem 0; font-size: 14px; }
+#article-body th                   { background: #f0edec; text-align: left; padding: 10px 14px; font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: 0.02em; }
+#article-body td                   { padding: 10px 14px; border-top: 1px solid #e5e2e1; }
+#article-body img                  { max-width: 100% !important; height: auto !important; width: auto !important; }
+#article-body div.separator        { text-align: center !important; }
+/* Block Blogger tap-to-fullsize-image links */
+#article-body .separator a[imageanchor],
+#article-body .separator a[href*="blogger.googleusercontent.com"] {
+  pointer-events: none;
+  cursor: default;
+  display: block;
+}
+/* Typography */
+#article-body h2 { font-family: Manrope,sans-serif; font-weight:700; font-size:28px; line-height:36px; letter-spacing:-0.02em; color:#1c1b1b; margin:2rem 0 1rem; scroll-margin-top:6rem; }
+#article-body h3 { font-family: Manrope,sans-serif; font-weight:600; font-size:20px; line-height:28px; color:#1c1b1b; margin:1.5rem 0 0.75rem; }
+#article-body p  { margin:0 0 1.25rem; }
+#article-body ul,#article-body ol { margin:0 0 1.25rem; padding-left:1.5rem; }
+#article-body ul { list-style:disc; }
+#article-body ol { list-style:decimal; }
+#article-body li { margin-bottom:0.5rem; }
+#article-body blockquote { background:#f6f3f2; border-left:3px solid #1f7a47; border-radius:0.75rem; padding:1.25rem 1.5rem; margin:1.5rem 0; font-style:italic; }
+#article-body .ei-key-takeaway { background:rgba(31,122,71,0.06); border-left:3px solid #1f7a47; border-radius:0.75rem; padding:1.25rem 1.5rem; margin:1.5rem 0; }
+#article-body strong { font-weight:600; color:#1c1b1b; }
