@@ -5,11 +5,26 @@
   "domain": "www.earthinsider.in",
   "url": "https://www.earthinsider.in",
   "description": "Stay updated with the latest news, trending stories, useful updates, and important happenings from India and around the world with Earth Insider News.",
-  "logo": "https://ein.earthinsider.in/assets/src/assets/Main-Small-Logo.png",
+  "logo": "/assets/icons/logo.png",
   "network": [
-    { "name": "Home Insider", "url": "https://home.earthinsider.in", "description": "Practical home cleaning and organization guides.", "icon": "cleaning_services" },
-    { "name": "Garden Insider", "url": "https://garden.earthinsider.in", "description": "Regenerative gardening, soil health, and heirloom seed saving.", "icon": "potted_plant" },
-    { "name": "Kitchen Insider", "url": "https://kitchen.earthinsider.in", "description": "Fermentation, pantry preservation, and cookware care.", "icon": "skillet" }
+    {
+      "name": "Home Insider",
+      "url": "https://home.earthinsider.in",
+      "description": "Practical home cleaning and organization guides.",
+      "icon": "cleaning_services"
+    },
+    {
+      "name": "Garden Insider",
+      "url": "https://garden.earthinsider.in",
+      "description": "Regenerative gardening, soil health, and heirloom seed saving.",
+      "icon": "potted_plant"
+    },
+    {
+      "name": "Kitchen Insider",
+      "url": "https://kitchen.earthinsider.in",
+      "description": "Fermentation, pantry preservation, and cookware care.",
+      "icon": "skillet"
+    }
   ],
   "social": {
     "telegram": "#",
