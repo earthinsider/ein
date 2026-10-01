@@ -1,1 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* ── Base resets ─────────────────────────────────────────── */
+@layer base {
+  html {
+    margin: 0; padding: 0;
+    overflow-x: clip;
+    touch-action: pan-y;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body { margin: 0; padding: 0; touch-action: pan-y; }
+  *, *::before, *::after { box-sizing: border-box; }
+  img, video { max-width: 100%; height: auto; display: block; }
+  :focus-visible { outline: 2px solid #006033; outline-offset: 3px; border-radius: 4px; }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child  { margin-bottom: 0 !important; }
+  ::-webkit-scrollbar { display: none; }
+}
+
+/* ── Dark mode: CSS variable overrides ─────────────────────
+   Tailwind uses darkMode:"class" so .dark on <html> triggers these.
+   We override the same color names used across all templates.     */
+@layer base {
+  :root {
+    --color-surface:           #fcf9f8;
+    --color-surface-container: #f0edec;
+    --color-surface-container-low: #f6f3f2;
+    --color-surface-container-lowest: #ffffff;
+    --color-surface-container-high: #ebe7e7;
+    --color-on-surface:        #1c1b1b;
+    --color-on-surface-variant:#3f4940;
+    --color-outline-variant:   #bec9be;
+    --color-outline:           #6f7a70;
+    --color-inverse-surface:   #313030;
+    --color-inverse-on-surface:#f3f0ef;
+  }
+  .dark {
+    --color-surface:               #111918;
+    --color-surface-container:     #1d2423;
+    --color-surface-container-low: #181f1e;
+    --color-surface-container-lowest:#0d1413;
+    --color-surface-container-high:#27302f;
+    --color-on-surface:            #e1e3e1;
+    --color-on-surface-variant:    #bfc9be;
+    --color-outline-variant:       #3f4940;
+    --color-outline:               #899389;
+    --color-inverse-surface:       #e1e3e1;
+    --color-inverse-on-surface:    #2d3231;
+  }
+}
+
+/* ── Skip link (accessibility) ──────────────────────────── */
+@layer utilities {
+  .skip-link {
+    position: absolute; top: -3rem; left: 0.5rem; z-index: 9999;
+    background: #006033; color: #fff;
+    padding: 0.5rem 1rem; border-radius: 0.5rem;
+    font-size: 0.875rem; font-weight: 600;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: 0.5rem; }
+}
+
+/* ── Ad slots: reserve space to prevent CLS ─────────────── */
+.ad-slot { max-width: 100%; overflow: hidden; text-align: center; }
+.ad-slot-banner  { min-height: 50px; }
+.ad-slot-lb      { min-height: 90px; }
+.ad-slot-box     { min-height: 250px; }
+.ad-slot-sky     { min-height: 600px; }
+.ad-slot-native  { min-height: 180px; }
+@media (min-width: 768px) { .ad-slot-banner { min-height: 90px; } }
+
+/* ── Blogger content sanitisation ───────────────────────── */
+#article-body * { max-width: 100%; box-sizing: border-box; }
+#article-body div[style*="width"]  { width: auto !important; max-width: 100% !important; }
+#article-body div[style*="float"]  { float: none !important; }
+#article-body iframe               { max-width: 100%; display: block; }
+#article-body table                { max-width: 100%; overflow-x: auto; display: block; border-collapse: collapse; width: 100%; margin: 1.5rem 0; font-size: 14px; }
+#article-body th                   { background: #f0edec; text-align: left; padding: 10px 14px; font-weight: 600; text-transform: uppercase; font-size: 12px; }
+#article-body td                   { padding: 10px 14px; border-top: 1px solid #e5e2e1; }
+#article-body img                  { max-width: 100% !important; height: auto !important; }
+#article-body div.separator        { text-align: center !important; }
+#article-body .separator a[imageanchor],
+#article-body .separator a[href*="blogger.googleusercontent.com"] {
+  pointer-events: none; cursor: default; display: block;
+}
+/* Article typography */
+#article-body h2 { font-family: Manrope,sans-serif; font-weight:700; font-size:28px; line-height:36px; letter-spacing:-0.02em; color:var(--color-on-surface,#1c1b1b); margin:2rem 0 1rem; scroll-margin-top:6rem; }
+#article-body h3 { font-family: Manrope,sans-serif; font-weight:600; font-size:20px; line-height:28px; color:var(--color-on-surface,#1c1b1b); margin:1.5rem 0 0.75rem; }
+#article-body p  { margin:0 0 1.25rem; }
+#article-body ul,#article-body ol { margin:0 0 1.25rem; padding-left:1.5rem; }
+#article-body ul { list-style:disc; }
+#article-body ol { list-style:decimal; }
+#article-body li { margin-bottom:0.5rem; }
+#article-body blockquote { background:#f6f3f2; border-left:3px solid #1f7a47; border-radius:0.75rem; padding:1.25rem 1.5rem; margin:1.5rem 0; font-style:italic; }
+#article-body .ei-key-takeaway { background:rgba(31,122,71,0.06); border-left:3px solid #1f7a47; border-radius:0.75rem; padding:1.25rem 1.5rem; margin:1.5rem 0; }
+#article-body strong { font-weight:600; }
