@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm install --prefer-offline
       - name: Build Tailwind CSS
-        run: npx tailwindcss -i ./src/assets/css/input.css -o ./src/assets/css/style.css --minify
+        run: npx tailwindcss -i ./src/assets/code/css/input.css -o ./src/assets/code/css/style.css --minify
       - name: Build Eleventy site
         run: npx eleventy
       - uses: actions/upload-pages-artifact@v3
