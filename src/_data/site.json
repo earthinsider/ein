@@ -32,5 +32,7 @@
     "instagram": "#",
     "youtube": "#",
     "x": "#"
-  }
+  },
+  "favicon": "/assets/icons/favicon.ico",
+  "faviconPng": "/assets/icons/favicon-32.png"
 }
