@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Dark mode: apply saved preference before CSS renders to prevent flash -->
+<!-- Dark mode: apply before CSS renders to prevent flash -->
 <script>
 (function(){
-  var t = localStorage.getItem('ei_theme');
-  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (t === 'dark' || (!t && prefersDark)) {
-    document.documentElement.classList.add('dark');
-  }
+  var t=localStorage.getItem('ei_theme');
+  var sys=window.matchMedia('(prefers-color-scheme:dark)').matches;
+  if(t==='dark'||(t===null&&sys)) document.documentElement.classList.add('dark');
 })();
 </script>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>{% if title %}{{ title }} | {{ site.shortName }}{% else %}{{ site.name }} — {{ site.tagline }}{% endif %}</title>
 <meta name="description" content="{{ description or site.description }}"/>
 <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
@@ -27,63 +25,49 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="{{ image }}"/>
 {% endif %}
-<!-- Google Discover: max-image-preview:large tells Google to use large image in Discover -->
 <meta name="robots" content="max-image-preview:large"/>
 <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="/feed.xml"/>
-
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="{{ site.favicon }}"/>
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.faviconPng }}"/>
 <!-- Ad network verification -->
-<meta content="dcbacedfccb1e45d60be16c0514acf8070c59156" name="dcbacedfccb1e45d60be16c0514acf8070c59156"/>
-<meta content="no-referrer-when-downgrade" name="referrer"/>
-<meta content="b8e237ba9f7e0a2ba0ebcc9feb4d0e25" name="monetag"/>
-<meta content="1a66e757995d2d92" name="yandex-verification"/>
-<meta content="BqHwGrHa9" name="admaven-placement"/>
-
-<!-- Preconnect for fonts (speeds up font load) -->
+<meta name="dcbacedfccb1e45d60be16c0514acf8070c59156" content="dcbacedfccb1e45d60be16c0514acf8070c59156"/>
+<meta name="referrer" content="no-referrer-when-downgrade"/>
+<meta name="monetag" content="b8e237ba9f7e0a2ba0ebcc9feb4d0e25"/>
+<meta name="yandex-verification" content="1a66e757995d2d92"/>
+<meta name="admaven-placement" content="BqHwGrHa9"/>
+<!-- Fonts: non-blocking load -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-
-<!-- Preload critical font weights -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" media="print" onload="this.media='all'"/>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"/></noscript>
-
-<!-- Compiled Tailwind CSS (replaces cdn.tailwindcss.com play script) -->
-<link rel="stylesheet" href="/assets/css/style.css"/>
+<!-- Compiled Tailwind (replaces cdn.tailwindcss.com — never add CDN script back) -->
+<link rel="stylesheet" href="/assets/code/css/style.css"/>
 </head>
 <body class="bg-surface font-body-default text-on-surface antialiased">
-
-<!-- Skip to content (accessibility) -->
 <a class="skip-link" href="#main-content">Skip to content</a>
-
 {% include "header.njk" %}
-<div id="main-content" tabindex="-1">
-{{ content | safe }}
-</div>
+<div id="main-content" tabindex="-1">{{ content | safe }}</div>
 {% include "footer.njk" %}
 {% include "widgets.njk" %}
-
-
+<!-- Dark mode toggle JS -->
 <script>
-function toggleTheme() {
-  var html = document.documentElement;
-  var isDark = html.classList.toggle('dark');
-  localStorage.setItem('ei_theme', isDark ? 'dark' : 'light');
-  // Swap icon on all theme buttons
-  document.querySelectorAll('#theme-btn .material-symbols-outlined').forEach(function(icon) {
-    icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+function toggleTheme(){
+  var isDark=document.documentElement.classList.toggle('dark');
+  localStorage.setItem('ei_theme',isDark?'dark':'light');
+  document.querySelectorAll('.theme-icon').forEach(function(el){
+    el.textContent=isDark?'light_mode':'dark_mode';
   });
 }
-// Set correct icon on load
-(function(){
-  var isDark = document.documentElement.classList.contains('dark');
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('#theme-btn .material-symbols-outlined').forEach(function(icon) {
-      icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-    });
+document.addEventListener('DOMContentLoaded',function(){
+  var isDark=document.documentElement.classList.contains('dark');
+  document.querySelectorAll('.theme-icon').forEach(function(el){
+    el.textContent=isDark?'light_mode':'dark_mode';
   });
-})();
+});
 </script>
-<!-- Adsterra Social Bar deferred to end of body so it never blocks page render -->
-<script async="async" src="https://hystericallikingdowntown.com/93/46/4f/93464f51ee34274f409ec19f2cf79491.js"></script>
+<!-- Adsterra Social Bar — deferred to end of body -->
+<script async src="https://hystericallikingdowntown.com/93/46/4f/93464f51ee34274f409ec19f2cf79491.js"></script>
 </body>
 </html>
