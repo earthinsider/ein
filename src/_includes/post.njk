@@ -44,22 +44,15 @@ templateClass: post
 </div>
 </header>
 
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-16">
-<article class="lg:col-span-8 flex flex-col min-w-0">
+<div style="display:flex;flex-direction:column;gap:2rem" class="mb-16 lg:grid lg:grid-cols-12 lg:gap-10 lg:items-start">
+<article style="min-width:0;width:100%" class="lg:col-span-8 flex flex-col">
 <details class="lg:hidden mb-8 bg-surface-container-low rounded-xl p-4 shadow-sm">
 <summary class="font-headline-sm text-headline-sm font-bold text-on-surface cursor-pointer flex items-center justify-between list-none"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">format_list_bulleted</span> Article Outline</span><span class="material-symbols-outlined text-on-surface-variant">expand_more</span></summary>
 <nav class="mt-4 flex flex-col space-y-2.5 pt-3" id="toc-nav-mobile"></nav>
 </details>
-<div class="flex gap-8 items-start">
-<aside class="hidden xl:block w-56 shrink-0 sticky top-24 pt-1">
-<div class="bg-surface-container-low rounded-xl p-4 shadow-sm">
-<span class="font-label-xs text-label-xs uppercase tracking-widest text-outline block mb-3 font-bold">Contents</span>
-<ul class="space-y-3 font-body-sm text-body-sm" id="toc-nav"></ul>
-</div>
-</aside>
-<div class="flex-1 min-w-0 max-w-prose space-y-7 text-on-surface font-body-default text-body-default leading-relaxed" id="article-body">
+<div>
+<div class="max-w-prose space-y-7 text-on-surface font-body-default text-body-default leading-relaxed" id="article-body">
 {{ content | safe }}
-</div>
 </div>
 
 {{ ads.responsiveBanner() }}
@@ -85,7 +78,7 @@ templateClass: post
 </section>
 {% endif %}
 </article>
-{% include "sidebar.njk" %}
+<div style="display:none" id="sidebar-mobile-hidden">{% include "sidebar.njk" %}</div>
 </div>
 
 <section class="mb-16">
@@ -176,6 +169,16 @@ templateClass: post
       bookmarkBtn.classList.toggle('text-primary', !saved);
       if (saved) { localStorage.removeItem(bmKey); } else { localStorage.setItem(bmKey, '1'); }
     });
+  }
+
+  // Show sidebar only on desktop (lg: 1024px+)
+  var sidebar = document.getElementById('sidebar-mobile-hidden');
+  if (sidebar) {
+    function checkSidebar() {
+      sidebar.style.display = window.innerWidth >= 1024 ? '' : 'none';
+    }
+    checkSidebar();
+    window.addEventListener('resize', checkSidebar);
   }
 
   // Resize Blogger images: replace s16000 (raw full-size) with s1200 (fast web size)
