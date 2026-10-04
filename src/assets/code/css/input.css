@@ -114,12 +114,12 @@
 
 /* ── Ad slots: prevent CLS ──────────────────────────────── */
 .ad-slot { max-width:100%; overflow:hidden; text-align:center; }
-.ad-slot-banner { min-height:50px; }
+.ad-slot-banner { min-height:0; }
 .ad-slot-lb     { min-height:90px; }
 .ad-slot-box    { min-height:250px; }
 .ad-slot-sky    { min-height:600px; }
 .ad-slot-native { min-height:0; }
-@media (min-width:768px) { .ad-slot-banner { min-height:90px; } }
+@media (min-width:768px) { .ad-slot-banner { min-height:0; } }
 
 /* ── Blogger content sanitisation ───────────────────────── */
 #article-body * { max-width:100%; box-sizing:border-box; }
