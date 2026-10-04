@@ -4,48 +4,45 @@ templateClass: post
 ---
 {% import "macros.njk" as macros %}
 {% import "ads.njk" as ads %}
-<div class="fixed top-16 left-0 w-full h-1 bg-surface-container z-40"><div class="h-full bg-primary w-0 transition-all duration-150 ease-out" id="read-progress"></div></div>
-<main class="w-full pt-16 bg-surface min-h-screen">
+<div class="fixed top-14 left-0 w-full h-0.5 z-40" style="background:var(--c-surface-container)"><div class="h-full bg-primary w-0 transition-all duration-150 ease-out" id="read-progress"></div></div>
+<main class="w-full pt-14 bg-surface min-h-screen">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <div class="flex flex-col w-full">
-<header class="w-full mb-8 pt-2">
-<nav class="flex items-center gap-2 font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mb-4">
-<a class="hover:text-primary transition-colors" href="/">Home</a>
-<span class="material-symbols-outlined text-[12px]">chevron_right</span>
-<a class="hover:text-primary transition-colors" href="/category/{{ categorySlug }}/">{{ categoryLabel }}</a>
-<span class="material-symbols-outlined text-[12px]">chevron_right</span>
-<span class="text-on-surface font-bold">{{ title }}</span>
+<header class="w-full mb-6">
+<!-- Breadcrumb: Home > Category only (no full title to prevent overflow) -->
+<nav class="flex items-center gap-1.5 font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mb-3 flex-wrap">
+<a class="hover:text-primary transition-colors shrink-0" href="/">Home</a>
+<span class="material-symbols-outlined text-[12px] shrink-0">chevron_right</span>
+<a class="hover:text-primary transition-colors shrink-0" href="/category/{{ categorySlug }}/">{{ categoryLabel }}</a>
 </nav>
-<div class="flex flex-wrap items-center gap-3 mb-6">
-<span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-xs text-label-xs font-bold uppercase tracking-wider">{{ categoryLabel }}</span>
-<span class="w-1 h-1 rounded-full bg-outline"></span>
+<!-- Title: full width, no overflow -->
+<h1 class="font-display-hero text-[28px] sm:text-[36px] lg:text-display-hero text-on-surface tracking-tight leading-tight mb-4" style="word-break:break-word;overflow-wrap:break-word;">{{ title }}</h1>
+<!-- Meta bar: stacks on mobile -->
+<div class="flex flex-wrap items-center gap-2 mb-4">
+<span class="px-2.5 py-0.5 rounded-full font-label-xs text-label-xs font-bold uppercase tracking-wider" style="background:var(--c-primary-fixed);color:var(--c-on-primary-fixed)">{{ categoryLabel }}</span>
+<span style="width:4px;height:4px;border-radius:50%;background:var(--c-outline);display:inline-block;flex-shrink:0"></span>
 <time class="font-label-md text-label-md text-on-surface-variant" datetime="{{ page.date | isoDate }}">{{ page.date | dateDisplay }}</time>
-<span class="w-1 h-1 rounded-full bg-outline"></span>
-<span class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">schedule</span> {{ content | readingTime }} min read</span>
+<span style="width:4px;height:4px;border-radius:50%;background:var(--c-outline);display:inline-block;flex-shrink:0"></span>
+<span class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">schedule</span> {{ content | readingTime }} min read</span>
 </div>
-<h1 class="font-display-hero text-[32px] sm:text-display-hero text-on-surface tracking-tight max-w-5xl leading-tight mb-6">{{ title }}</h1>
-{% if excerpt %}<p class="font-body-lead text-body-lead text-on-surface-variant max-w-3xl mb-8 leading-relaxed">{{ excerpt }}</p>{% endif %}
-{% if image %}<div class="w-full rounded-xl overflow-hidden mb-6 aspect-[16/9] bg-surface-container-highest">
+{% if excerpt %}<p class="font-body-lead text-body-lead text-on-surface-variant mb-6 leading-relaxed" style="word-break:break-word">{{ excerpt }}</p>{% endif %}
+{% if image %}<div class="w-full rounded-xl overflow-hidden mb-4" style="aspect-ratio:16/9;background:var(--c-surface-container-highest)">
 <img src="{{ image }}" alt="{{ imageAlt or title }}" class="w-full h-full object-cover" width="1200" height="630" fetchpriority="high" loading="eager" decoding="async"/>
 </div>{% endif %}
-<div class="flex flex-wrap items-center justify-between gap-3 py-3 bg-surface-container-low rounded-xl px-5">
-<span class="font-label-md text-label-md text-on-surface-variant">Reviewed by the {{ site.shortName }} Editorial Team</span>
-<div class="flex items-center gap-2 shrink-0 flex-wrap">
-<span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider mr-1 hidden sm:inline">Share</span>
-<a aria-label="Share on X" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all shadow-sm" id="share-x" href="#" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">close</span></a>
-<a aria-label="Share on Telegram" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-[#2AABEE] hover:bg-surface-container-high transition-all shadow-sm" id="share-tg" href="#" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">send</span></a>
-<a aria-label="Share on WhatsApp" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-[#25D366] hover:bg-surface-container-high transition-all shadow-sm" id="share-wa" href="#" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span></a>
-<div class="relative inline-block">
-<button aria-label="Copy link" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all shadow-sm" id="copy-btn" type="button"><span class="material-symbols-outlined text-[18px]">link</span></button>
-<span class="opacity-0 pointer-events-none transition-opacity duration-200 absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-inverse-surface text-inverse-on-surface font-label-xs text-label-xs whitespace-nowrap shadow-md" id="copy-tip">Copied!</span>
+<!-- Share bar: simple row, wraps on mobile -->
+<div class="flex flex-wrap items-center gap-2 py-3 px-4 rounded-xl mb-2" style="background:var(--c-surface-container-low)">
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Share</span>
+<a aria-label="Share on X" id="share-x" href="#" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface transition-colors" style="background:var(--c-surface-container-lowest)"><span class="material-symbols-outlined text-[16px]">close</span></a>
+<a aria-label="Share on Telegram" id="share-tg" href="#" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface transition-colors" style="background:var(--c-surface-container-lowest)"><span class="material-symbols-outlined text-[16px]">send</span></a>
+<a aria-label="Share on WhatsApp" id="share-wa" href="#" target="_blank" rel="noopener noreferrer" class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface transition-colors" style="background:var(--c-surface-container-lowest)"><span class="material-symbols-outlined text-[16px]">chat</span></a>
+<div class="relative">
+<button aria-label="Copy link" id="copy-btn" type="button" class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface transition-colors" style="background:var(--c-surface-container-lowest)"><span class="material-symbols-outlined text-[16px]">link</span></button>
+<span id="copy-tip" class="opacity-0 pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded font-label-xs text-label-xs whitespace-nowrap transition-opacity" style="background:var(--c-inverse-surface);color:var(--c-inverse-on-surface)">Copied!</span>
 </div>
-<button aria-label="Save article" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-primary transition-all shadow-sm" id="bookmark-btn" type="button"><span class="material-symbols-outlined text-[18px]" id="bookmark-icon">bookmark_border</span></button>
-<button aria-label="Print article" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-all shadow-sm" onclick="window.print()" type="button"><span class="material-symbols-outlined text-[18px]">print</span></button>
-</div>
+<button aria-label="Save article" id="bookmark-btn" type="button" class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-primary transition-colors" style="background:var(--c-surface-container-lowest)"><span class="material-symbols-outlined text-[16px]" id="bookmark-icon">bookmark_border</span></button>
+<button aria-label="Print" onclick="window.print()" type="button" class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface transition-colors" style="background:var(--c-surface-container-lowest)"><span class="material-symbols-outlined text-[16px]">print</span></button>
 </div>
 </header>
-
-{{ ads.responsiveBanner() }}
 
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-16">
 <article class="lg:col-span-8 flex flex-col min-w-0">
