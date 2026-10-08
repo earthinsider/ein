@@ -10,7 +10,7 @@
 </h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">{{ post.data.excerpt }}</p>
 <div class="mt-auto flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs pt-3">
-<span>{{ post.date | dateDisplay }}</span>
+<span>{{ post.data.date | dateDisplay }}</span>
 <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> {{ post.templateContent | readingTime }} min</span>
 </div>
 </div>
