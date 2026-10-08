@@ -20,7 +20,7 @@ module.exports = function (eleventyConfig) {
       );
     });
     return all.sort(function (a, b) {
-      return new Date(b.date) - new Date(a.date);
+      return new Date(b.data.date) - new Date(a.data.date);
     });
   });
 
