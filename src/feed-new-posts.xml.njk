@@ -8,7 +8,7 @@ eleventyExcludeFromCollections: true
 <title>{{ site.name }} — Latest Posts</title>
 <link>{{ site.url }}/</link>
 <description>{{ site.description }} (new posts only — excludes migrated archive)</description>
-{% for post in collections.posts | reverse %}{% if not post.data.migrated %}
+{% for post in collections.posts %}{% if not post.data.migrated %}
 <item>
 <title>{{ post.data.title }}</title>
 <link>{{ site.url }}{{ post.url }}</link>

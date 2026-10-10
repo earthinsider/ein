@@ -4,7 +4,7 @@ title: ""
 ---
 {% import "macros.njk" as macros %}
 {% import "ads.njk" as ads %}
-{% set latest = collections.posts | reverse %}
+{% set latest = collections.posts %}
 {% set featured = latest[0] %}
 <main class="w-full pt-16 bg-surface min-h-screen">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8">
@@ -42,7 +42,7 @@ title: ""
 <div><span class="font-label-xs text-label-xs uppercase tracking-widest text-primary font-bold block mb-1">Latest Posts</span><h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Latest Posts</h2></div>
 <a class="font-label-md text-label-md text-primary hover:text-primary-container inline-flex items-center gap-1 transition-colors" href="/all-posts/"><span>View all</span><span class="material-symbols-outlined text-[16px]">chevron_right</span></a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="ei-grid-3">
 {% for post in latest | limit(25) %}{{ macros.articleCard(post) }}{% endfor %}
 </div>
 </section>
@@ -52,8 +52,8 @@ title: ""
 {% if catPosts.length > 0 %}
 <section class="flex flex-col gap-6">
 <div class="flex items-center gap-3"><span class="w-2.5 h-6 rounded-full bg-primary inline-block"></span><h2 class="font-headline-xl text-headline-lg sm:text-headline-xl font-bold text-on-surface">{{ cat.label }}</h2></div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-{% for post in catPosts | reverse | limit(3) %}{{ macros.articleCard(post) }}{% endfor %}
+<div class="ei-grid-3">
+{% for post in catPosts | limit(3) %}{{ macros.articleCard(post) }}{% endfor %}
 </div>
 </section>
 {% endif %}

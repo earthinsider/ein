@@ -8,7 +8,7 @@ title: "All Categories"
 <h1 class="font-headline-xl text-[28px] sm:text-display-hero text-on-surface tracking-tight leading-none mb-3">Explore By Category</h1>
 <p class="font-body-lead text-body-lead text-on-surface-variant">Browse every topic we cover on {{ site.name }}.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="ei-grid-2">
 {% for cat in categories %}
 <div class="p-6 rounded-2xl bg-surface-container-low shadow-sm">
 <a href="/category/{{ cat.slug }}/" class="font-headline-lg text-headline-lg text-on-surface font-bold hover:text-primary transition-colors">{{ cat.label }}</a>

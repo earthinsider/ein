@@ -48,7 +48,7 @@ title: "About"
 <section class="flex flex-col space-y-6">
 <h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">What We Cover</h2>
 <p class="font-body-default text-body-default text-on-surface-variant max-w-prose">{{ site.description }}</p>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+<div class="ei-grid-3" style="padding-top:0.5rem;gap:1rem">
 {% for cat in categories | limit(6) %}
 <a href="/category/{{ cat.slug }}/" class="bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
 <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4"><span class="material-symbols-outlined text-[22px]">{{ cat.icon or "label" }}</span></div>

@@ -15,7 +15,7 @@ permalink: "{% if pagination.pageNumber == 0 %}/all-posts/{% else %}/all-posts/p
 <h1 class="font-headline-xl text-[28px] sm:text-display-hero text-on-surface tracking-tight font-extrabold mb-2">All Posts</h1>
 <p class="font-body-lead text-body-lead text-on-surface-variant">{{ collections.posts.length }} evergreen posts and counting.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="ei-grid-3-lg">
 {% for post in pagePosts %}{{ macros.articleCard(post) }}{% endfor %}
 </div>
 <nav aria-label="Pagination" class="mt-10 bg-surface-container-lowest rounded-2xl p-3 shadow-sm flex items-center justify-between gap-2">
