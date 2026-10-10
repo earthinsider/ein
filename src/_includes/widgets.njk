@@ -1,18 +1,28 @@
 <aside aria-label="Network Notifications" class="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2 pointer-events-none [&>*]:pointer-events-auto">
-<div id="widget-alerts" style="max-width:220px;min-width:180px" class="bg-surface-container-lowest rounded-xl p-2.5 sm:p-3 shadow-[0_8px_24px_rgba(0,0,0,0.12)] border-l-[3px]" style="max-width:220px;min-width:180px;border:1px solid rgba(0,0,0,0.1);border-left:3px solid var(--c-primary) flex items-center gap-2 relative">
-<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary shrink-0"><span class="material-symbols-outlined text-[16px] sm:text-[18px]">notifications_active</span></div>
-<div class="flex-1 min-w-0 pr-4"><p class="font-label-md text-label-md text-on-surface font-semibold leading-tight truncate text-[12px] sm:text-[13px]">Get News Alerts</p><button class="widget-enable-btn text-label-xs font-label-xs text-primary font-semibold hover:underline text-[11px]" type="button">Enable</button></div>
-<button aria-label="Close news alert" class="widget-close-btn absolute top-1.5 right-1.5 text-on-surface-variant hover:text-on-surface w-4 h-4 flex items-center justify-center rounded" data-widget="widget-alerts" data-persistent="true" type="button"><span class="material-symbols-outlined text-[12px]">close</span></button>
+<div id="widget-alerts" class="rounded-xl p-2.5 relative" style="max-width:180px;background:var(--c-surface-container-lowest);box-shadow:0 8px 24px rgba(0,0,0,0.12);border:1px solid rgba(0,0,0,0.08);border-left:3px solid var(--c-primary);display:flex;align-items:center;gap:8px">
+<div class="rounded-lg shrink-0" style="width:26px;height:26px;background:var(--c-primary-container,#1f7a47);opacity:0.12;position:absolute"></div>
+<span class="material-symbols-outlined shrink-0" style="font-size:16px;color:var(--c-primary);width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(0,96,51,0.08)">notifications_active</span>
+<div class="flex-1" style="min-width:0;padding-right:16px">
+<p class="font-label-md" style="font-size:11px;font-weight:600;color:var(--c-on-surface);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Get News Alerts</p>
+<button class="widget-enable-btn" style="font-size:10px;font-weight:600;color:var(--c-primary);background:none;border:none;padding:0;cursor:pointer" type="button">Enable</button>
 </div>
-<div id="widget-telegram" style="max-width:220px;min-width:180px" class="bg-surface-container-lowest rounded-xl p-2.5 sm:p-3 shadow-[0_8px_24px_rgba(0,0,0,0.12)] border-l-[3px]" style="max-width:220px;min-width:180px;border:1px solid rgba(0,0,0,0.1);border-left:3px solid var(--c-secondary) flex items-center gap-2 relative">
-<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary shrink-0"><span class="material-symbols-outlined text-[16px] sm:text-[18px]">send</span></div>
-<div class="flex-1 min-w-0 pr-4"><p class="font-label-md text-label-md text-on-surface font-semibold leading-tight truncate text-[12px] sm:text-[13px]">Join Telegram</p><a href="{{ site.social.telegram }}" class="inline-block text-label-xs font-label-xs text-secondary font-semibold hover:underline text-[11px]">Join now</a></div>
-<button aria-label="Close Telegram prompt" class="widget-close-btn absolute top-1.5 right-1.5 text-on-surface-variant hover:text-on-surface w-4 h-4 flex items-center justify-center rounded" data-widget="widget-telegram" data-persistent="false" type="button"><span class="material-symbols-outlined text-[12px]">close</span></button>
+<button aria-label="Close news alert" class="widget-close-btn" data-widget="widget-alerts" data-persistent="true" type="button" style="position:absolute;top:6px;right:6px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--c-on-surface-variant);cursor:pointer;padding:0"><span class="material-symbols-outlined" style="font-size:12px">close</span></button>
 </div>
-<div id="widget-discord" style="max-width:220px;min-width:180px" class="bg-surface-container-lowest rounded-xl p-2.5 sm:p-3 shadow-[0_8px_24px_rgba(0,0,0,0.12)] border-l-[3px]" style="max-width:220px;min-width:180px;border:1px solid rgba(0,0,0,0.1);border-left:3px solid var(--c-tertiary) flex items-center gap-2 relative">
-<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-tertiary-container/20 flex items-center justify-center text-tertiary shrink-0"><span class="material-symbols-outlined text-[16px] sm:text-[18px]">forum</span></div>
-<div class="flex-1 min-w-0 pr-4"><p class="font-label-md text-label-md text-on-surface font-semibold leading-tight truncate text-[12px] sm:text-[13px]">Join Discord</p><a href="{{ site.social.discord }}" class="inline-block text-label-xs font-label-xs text-tertiary font-semibold hover:underline text-[11px]">Join now</a></div>
-<button aria-label="Close Discord prompt" class="widget-close-btn absolute top-1.5 right-1.5 text-on-surface-variant hover:text-on-surface w-4 h-4 flex items-center justify-center rounded" data-widget="widget-discord" data-persistent="false" type="button"><span class="material-symbols-outlined text-[12px]">close</span></button>
+<div id="widget-telegram" class="rounded-xl p-2.5 relative" style="max-width:180px;background:var(--c-surface-container-lowest);box-shadow:0 8px 24px rgba(0,0,0,0.12);border:1px solid rgba(0,0,0,0.08);border-left:3px solid var(--c-secondary);display:flex;align-items:center;gap:8px">
+<span class="material-symbols-outlined shrink-0" style="font-size:16px;color:var(--c-secondary);width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(45,98,141,0.08)">send</span>
+<div class="flex-1" style="min-width:0;padding-right:16px">
+<p class="font-label-md" style="font-size:11px;font-weight:600;color:var(--c-on-surface);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Join Telegram</p>
+<a href="{{ site.social.telegram }}" style="font-size:10px;font-weight:600;color:var(--c-secondary);text-decoration:none">Join now</a>
+</div>
+<button aria-label="Close Telegram prompt" class="widget-close-btn" data-widget="widget-telegram" data-persistent="false" type="button" style="position:absolute;top:6px;right:6px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--c-on-surface-variant);cursor:pointer;padding:0"><span class="material-symbols-outlined" style="font-size:12px">close</span></button>
+</div>
+<div id="widget-discord" class="rounded-xl p-2.5 relative" style="max-width:180px;background:var(--c-surface-container-lowest);box-shadow:0 8px 24px rgba(0,0,0,0.12);border:1px solid rgba(0,0,0,0.08);border-left:3px solid var(--c-tertiary);display:flex;align-items:center;gap:8px">
+<span class="material-symbols-outlined shrink-0" style="font-size:16px;color:var(--c-tertiary);width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(139,55,66,0.08)">forum</span>
+<div class="flex-1" style="min-width:0;padding-right:16px">
+<p class="font-label-md" style="font-size:11px;font-weight:600;color:var(--c-on-surface);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Join Discord</p>
+<a href="{{ site.social.discord }}" style="font-size:10px;font-weight:600;color:var(--c-tertiary);text-decoration:none">Join now</a>
+</div>
+<button aria-label="Close Discord prompt" class="widget-close-btn" data-widget="widget-discord" data-persistent="false" type="button" style="position:absolute;top:6px;right:6px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--c-on-surface-variant);cursor:pointer;padding:0"><span class="material-symbols-outlined" style="font-size:12px">close</span></button>
 </div>
 </aside>
 <script>

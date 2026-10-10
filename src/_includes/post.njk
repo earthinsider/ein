@@ -4,7 +4,7 @@ templateClass: post
 ---
 {% import "macros.njk" as macros %}
 {% import "ads.njk" as ads %}
-<div class="fixed top-16 left-0 w-full h-1 bg-surface-container z-40"><div class="h-full bg-primary w-0 transition-all duration-150 ease-out" id="read-progress"></div></div>
+<div style="position:fixed;top:56px;left:0;width:100%;height:4px;background:var(--c-surface-container);z-index:40"><div style="height:100%;background:var(--c-primary);width:0;transition:width 0.15s ease-out" id="read-progress"></div></div>
 <main class="w-full pt-16 bg-surface min-h-screen">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <div class="flex flex-col w-full">
@@ -82,7 +82,7 @@ templateClass: post
 <h2 class="font-headline-lg text-headline-md text-on-surface font-bold">More on {{ categoryLabel }}</h2>
 <a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1 font-semibold" href="/category/{{ categorySlug }}/">View all <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="ei-grid-3">
 {% for post in related | limit(4) %}{% if post.url != page.url %}{{ macros.articleCard(post) }}{% endif %}{% endfor %}
 </div>
 </section>
@@ -93,8 +93,8 @@ templateClass: post
 
 <section class="mb-16">
 <div class="flex items-center justify-between mb-8"><h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">Latest from {{ site.shortName }}</h2><a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1 font-semibold" href="/all-posts/">View all <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a></div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-{% for post in collections.posts | reverse | limit(3) %}{{ macros.articleCard(post) }}{% endfor %}
+<div class="ei-grid-3">
+{% for post in collections.posts | limit(3) %}{{ macros.articleCard(post) }}{% endfor %}
 </div>
 </section>
 </div>

@@ -11,7 +11,7 @@
 <h2 class="font-headline-md text-headline-md text-on-surface font-bold flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">trending_up</span> Trending Posts</h2>
 </div>
 <ol class="space-y-4">
-{% for post in collections.posts | reverse | limit(4) %}
+{% for post in collections.posts | limit(4) %}
 <li class="flex items-start gap-3.5 {% if not loop.last %}pb-4{% endif %}">
 <span class="font-display-hero text-headline-lg font-bold text-outline-variant leading-none shrink-0 w-7">{{ loop.index }}</span>
 <div>

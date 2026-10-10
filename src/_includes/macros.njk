@@ -1,6 +1,6 @@
 {% macro articleCard(post) %}
 <article class="flex flex-col bg-surface-container-low rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
-<div class="aspect-[16/10] bg-surface-container-highest relative overflow-hidden">
+<div class="ei-card-img">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="{{ post.data.imageAlt or post.data.title }}" src="{{ post.data.image }}" loading="lazy"/>
 <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface/90 backdrop-blur font-label-xs text-label-xs font-bold text-on-surface uppercase">{{ post.data.categoryLabel }}</span>
 </div>

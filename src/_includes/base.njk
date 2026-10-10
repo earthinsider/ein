@@ -71,3 +71,12 @@ document.addEventListener('DOMContentLoaded',function(){
 <script async src="https://hystericallikingdowntown.com/93/46/4f/93464f51ee34274f409ec19f2cf79491.js"></script>
 </body>
 </html>
+.ei-grid-2{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.ei-grid-3{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.ei-grid-3-lg{display:grid;grid-template-columns:1fr;gap:1.5rem}
+@media(min-width:640px){.ei-grid-2{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:768px){.ei-grid-3{grid-template-columns:repeat(3,1fr)}.ei-grid-3-lg{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.ei-grid-3-lg{grid-template-columns:repeat(3,1fr)}}
+.ei-card-img{aspect-ratio:16/10;background:var(--c-surface-container-highest);position:relative;overflow:hidden;width:100%}
+.ei-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+
