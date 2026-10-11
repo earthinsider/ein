@@ -13,7 +13,7 @@ eleventyExcludeFromCollections: true
 <title>{{ post.data.title }}</title>
 <link>{{ site.url }}{{ post.url }}</link>
 <guid>{{ site.url }}{{ post.url }}</guid>
-<pubDate>{{ post.date.toUTCString() }}</pubDate>
+<pubDate>{{ post | postDate | utcDate }}</pubDate>
 <description>{{ post.data.excerpt }}</description>
 </item>
 {% endfor %}

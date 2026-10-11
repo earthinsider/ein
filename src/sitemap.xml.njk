@@ -11,6 +11,6 @@ eleventyExcludeFromCollections: true
 {% for cat in categories %}<url><loc>{{ site.url }}/category/{{ cat.slug }}/</loc></url>
 {% for sub in cat.subs %}<url><loc>{{ site.url }}/category/{{ cat.slug }}/{{ sub.slug }}/</loc></url>
 {% endfor %}{% endfor %}
-{% for post in collections.posts %}<url><loc>{{ site.url }}{{ post.url }}</loc><lastmod>{{ post.date | isoDate }}</lastmod></url>
+{% for post in collections.posts %}<url><loc>{{ site.url }}{{ post.url }}</loc><lastmod>{{ post | postDate | isoDate }}</lastmod></url>
 {% endfor %}
 </urlset>
