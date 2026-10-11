@@ -19,7 +19,7 @@ templateClass: post
 <div class="flex flex-wrap items-center gap-3 mb-6">
 <span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-xs text-label-xs font-bold uppercase tracking-wider">{{ categoryLabel }}</span>
 <span class="w-1 h-1 rounded-full bg-outline"></span>
-<time class="font-label-md text-label-md text-on-surface-variant" datetime="{{ page.date | isoDate }}">{{ page.date | dateDisplay }}</time>
+<time class="font-label-md text-label-md text-on-surface-variant" datetime="{{ (date or page.date) | isoDate }}">{{ (date or page.date) | dateDisplay }}</time>
 <span class="w-1 h-1 rounded-full bg-outline"></span>
 <span class="flex items-center gap-1 font-label-md text-label-md text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">schedule</span> {{ content | readingTime }} min read</span>
 </div>
