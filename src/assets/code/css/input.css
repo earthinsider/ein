@@ -79,7 +79,10 @@
 .ad-slot-lb      { min-height: 90px; }
 .ad-slot-box     { min-height: 250px; }
 .ad-slot-sky     { min-height: 600px; }
-.ad-slot-native  { min-height: 180px; }
+.ad-slot-native  { min-height: 0; }
+/* Native banner: no reserved box. Hidden while its container is empty
+   (script still loading / no fill), shows only once the ad is injected. */
+.ad-slot-native:has(> div:empty) { display: none; }
 @media (min-width: 768px) { .ad-slot-banner { min-height: 90px; } }
 
 /* ── Blogger content sanitisation ───────────────────────── */
