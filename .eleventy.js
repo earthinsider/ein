@@ -1,3 +1,16 @@
+// Real publish date of a collection item.
+// Paginated migrated posts get page.date = build time (eleventyComputed can't set it),
+// so read the date field from the post's own data (YYYY-MM-DD from the archive JSON,
+// or the front-matter date of .md posts). Falls back to Eleventy's page date.
+function realDate(item) {
+  var raw = item && item.data && item.data.date;
+  if (raw) {
+    var d = new Date(raw);
+    if (!isNaN(d.getTime())) return d;
+  }
+  return new Date(item && item.date);
+}
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/CNAME");
@@ -11,7 +24,8 @@ module.exports = function (eleventyConfig) {
 
   // All posts: migrated (from JSON via migrated-post.njk pagination) + new .md posts
   // addAllPagesToCollections: true on migrated-post.njk means Eleventy already adds them;
-  // this collection merges both sources sorted by date descending for templates.
+  // this collection merges both sources sorted by REAL date, oldest first (ascending).
+  // Templates call "| reverse" to get newest first, so keep ascending here.
   eleventyConfig.addCollection("posts", function (collectionApi) {
     const all = collectionApi.getAll().filter(function (item) {
       return (
@@ -20,8 +34,16 @@ module.exports = function (eleventyConfig) {
       );
     });
     return all.sort(function (a, b) {
-      return new Date(b.date) - new Date(a.date);
+      return realDate(a) - realDate(b);
     });
+  });
+
+  eleventyConfig.addFilter("postDate", function (item) {
+    return realDate(item);
+  });
+
+  eleventyConfig.addFilter("utcDate", function (dateObj) {
+    return new Date(dateObj).toUTCString();
   });
 
   eleventyConfig.addFilter("dateDisplay", function (dateObj) {
