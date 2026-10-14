@@ -4,8 +4,9 @@
   "private": true,
   "description": "Eleventy site for Earth Insider News (www.earthinsider.in)",
   "scripts": {
+    "fonts": "node scripts/build-fonts.js",
     "css": "npx tailwindcss -i ./src/assets/code/css/input.css -o ./src/assets/code/css/style.css --minify",
-    "build": "npm run css && eleventy",
+    "build": "npm run fonts && npm run css && eleventy && node scripts/check-icons.js",
     "serve": "npx tailwindcss -i ./src/assets/code/css/input.css -o ./src/assets/code/css/style.css --watch & eleventy --serve",
     "debug": "DEBUG=Eleventy* eleventy"
   },
