@@ -36,14 +36,20 @@
 <meta name="monetag" content="b8e237ba9f7e0a2ba0ebcc9feb4d0e25"/>
 <meta name="yandex-verification" content="1a66e757995d2d92"/>
 <meta name="admaven-placement" content="BqHwGrHa9"/>
+{% if fonts and fonts.local %}
+<!-- Fonts: self-hosted by scripts/build-fonts.js (no Google Fonts requests) -->
+{% for href in fonts.preload %}<link rel="preload" as="font" type="font/woff2" href="{{ href }}" crossorigin="anonymous"/>
+{% endfor %}<style>{{ fonts.css | safe }}</style>
+{% else %}
 <!-- Fonts: non-blocking load -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" media="print" onload="this.media='all'"/>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"/></noscript>
-<!-- Compiled Tailwind (replaces cdn.tailwindcss.com — never add CDN script back) -->
-<link rel="stylesheet" href="/assets/code/css/style.css"/>
+{% endif %}
+<!-- Compiled Tailwind, inlined (replaces cdn.tailwindcss.com — never add CDN script back) -->
+{% if inlineCss %}<style>{{ inlineCss | safe }}</style>{% else %}<link rel="stylesheet" href="/assets/code/css/style.css"/>{% endif %}
 </head>
 <body class="bg-surface font-body-default text-on-surface antialiased">
 <a class="skip-link" href="#main-content">Skip to content</a>

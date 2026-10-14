@@ -56,7 +56,7 @@ templateClass: post
 <div class="flex gap-8 items-start">
 <aside class="hidden xl:block w-56 shrink-0 sticky top-24 pt-1">
 <div class="bg-surface-container-low rounded-xl p-4 shadow-sm">
-<span class="font-label-xs text-label-xs uppercase tracking-widest text-outline block mb-3 font-bold">Contents</span>
+<span class="font-label-xs text-label-xs uppercase tracking-widest text-on-surface-variant block mb-3 font-bold">Contents</span>
 <ul class="space-y-3 font-body-sm text-body-sm" id="toc-nav"></ul>
 </div>
 </aside>
@@ -68,7 +68,7 @@ templateClass: post
 {{ ads.responsiveBanner() }}
 
 <section class="bg-surface-container-lowest rounded-xl p-5 sm:p-6 mt-10 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-<div><h4 class="font-headline-sm text-headline-sm text-on-surface">Was this post helpful?</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Your feedback shapes what we cover next.</p></div>
+<div><h2 class="font-headline-sm text-headline-sm text-on-surface">Was this post helpful?</h2><p class="font-body-sm text-body-sm text-on-surface-variant">Your feedback shapes what we cover next.</p></div>
 <div class="flex items-center gap-2" id="feedback-container">
 <button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary/10 text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors" id="feedback-yes" type="button"><span class="material-symbols-outlined text-[18px]">thumb_up</span> Yes</button>
 <button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="feedback-no" type="button"><span class="material-symbols-outlined text-[18px]">thumb_down</span> No</button>
@@ -80,7 +80,7 @@ templateClass: post
 <section class="mt-16">
 <div class="flex items-center justify-between mb-6">
 <h2 class="font-headline-lg text-headline-md text-on-surface font-bold">More on {{ categoryLabel }}</h2>
-<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1 font-semibold" href="/category/{{ categorySlug }}/">View all <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1 font-semibold" href="/category/{{ categorySlug }}/" aria-label="View all {{ categoryLabel }} posts">View all <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 {% for post in related | limit(4) %}{% if post.url != page.url %}{{ macros.articleCard(post) }}{% endif %}{% endfor %}
@@ -92,7 +92,7 @@ templateClass: post
 </div>
 
 <section class="mb-16">
-<div class="flex items-center justify-between mb-8"><h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">Latest from {{ site.shortName }}</h2><a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1 font-semibold" href="/all-posts/">View all <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a></div>
+<div class="flex items-center justify-between mb-8"><h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">Latest from {{ site.shortName }}</h2><a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1 font-semibold" href="/all-posts/" aria-label="View all {{ site.shortName }} posts">View all <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a></div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 {% for post in collections.posts | reverse | limit(3) %}{{ macros.articleCard(post) }}{% endfor %}
 </div>
