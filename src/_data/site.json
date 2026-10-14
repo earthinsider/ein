@@ -6,6 +6,7 @@
   "url": "https://www.earthinsider.in",
   "description": "Stay updated with the latest news, trending stories, useful updates, and important happenings from India and around the world with Earth Insider News.",
   "logo": "/assets/icons/Main-Small-Logo.png",
+  "logoSmall": "/assets/icons/logo-header.png",
   "network": [
     {
       "name": "Home Insider",
