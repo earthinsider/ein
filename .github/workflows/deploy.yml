@@ -24,10 +24,14 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm install --prefer-offline
+      - name: Self-host fonts (falls back to Google Fonts if the fetch fails)
+        run: node scripts/build-fonts.js
       - name: Build Tailwind CSS
         run: npx tailwindcss -i ./src/assets/code/css/input.css -o ./src/assets/code/css/style.css --minify
       - name: Build Eleventy site
         run: npx eleventy
+      - name: Check icon subset
+        run: node scripts/check-icons.js
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
