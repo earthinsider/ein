@@ -1,3 +1,23 @@
+// ---- Cloudinary responsive images ----
+// Set to false to go back to the original full-size image URLs everywhere.
+const CLOUDINARY_TRANSFORM = true;
+const CLOUDINARY_WIDTHS = [400, 800, 1200];
+
+function cloudinaryParts(url) {
+  var m = /^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)(.+)$/.exec(url || "");
+  if (!m) return null;
+  var first = m[2].split("/")[0];
+  // URL already carries a transformation (e.g. f_auto,q_auto/..., w_400/...): leave it alone
+  if (first.indexOf(",") !== -1 || /^[a-z]{1,3}_/.test(first)) return null;
+  return m;
+}
+
+function cloudinaryUrl(url, width) {
+  var m = CLOUDINARY_TRANSFORM && cloudinaryParts(url);
+  if (!m) return url;
+  return m[1] + "f_auto,q_auto,c_limit,w_" + width + "/" + m[2];
+}
+
 // Real publish date of a collection item.
 // Paginated migrated posts get page.date = build time (eleventyComputed can't set it),
 // so read the date field from the post's own data (YYYY-MM-DD from the archive JSON,
@@ -36,6 +56,17 @@ module.exports = function (eleventyConfig) {
     return all.sort(function (a, b) {
       return realDate(a) - realDate(b);
     });
+  });
+
+  eleventyConfig.addFilter("cld", function (url, width) {
+    return cloudinaryUrl(url, width);
+  });
+
+  eleventyConfig.addFilter("cldSet", function (url) {
+    if (!CLOUDINARY_TRANSFORM || !cloudinaryParts(url)) return "";
+    return CLOUDINARY_WIDTHS.map(function (w) {
+      return cloudinaryUrl(url, w) + " " + w + "w";
+    }).join(", ");
   });
 
   eleventyConfig.addFilter("postDate", function (item) {
