@@ -1,7 +1,7 @@
 {% macro articleCard(post) %}
 <article class="flex flex-col bg-surface-container-low rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
 <div class="aspect-[16/10] bg-surface-container-highest relative overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="{{ post.data.imageAlt or post.data.title }}" src="{{ post.data.image }}" loading="lazy"/>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="{{ post.data.imageAlt or post.data.title }}" src="{{ post.data.image | cld(800) }}"{% set cardSet = post.data.image | cldSet %}{% if cardSet %} srcset="{{ cardSet }}" sizes="(min-width:1024px) 390px, (min-width:768px) 46vw, 100vw"{% endif %} loading="lazy" decoding="async"/>
 <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface/90 backdrop-blur font-label-xs text-label-xs font-bold text-on-surface uppercase">{{ post.data.categoryLabel }}</span>
 </div>
 <div class="p-5 flex flex-col flex-1">
