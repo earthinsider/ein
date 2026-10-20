@@ -1,0 +1,185 @@
+{
+  "enabled": true,
+  "loader": "https://jsc.mgid.com/site/1080274.js",
+  "hosts": [
+    "ein.earthinsider.in",
+    "www.earthinsider.in",
+    "earthinsider.in"
+  ],
+  "gapMs": 100,
+  "minWordsBetween": 220,
+  "pages": {
+    "post": {
+      "inline": [
+        {
+          "id": "2096270",
+          "panel": true
+        },
+        {
+          "id": "2096239",
+          "panel": true
+        },
+        {
+          "id": "2097555",
+          "panel": true
+        },
+        {
+          "id": "2098790",
+          "panel": false
+        }
+      ],
+      "anchors": {
+        "post-under": {
+          "id": "2098544",
+          "panel": false
+        },
+        "post-smart-end": {
+          "id": "2094510",
+          "panel": true,
+          "minWords": 700
+        },
+        "sidebar-top": {
+          "id": "2096240",
+          "panel": false,
+          "device": "desktop"
+        },
+        "sidebar-lower": {
+          "id": "2098594",
+          "panel": false,
+          "device": "desktop"
+        }
+      },
+      "overlays": [
+        {
+          "name": "Swipe Up",
+          "id": "2094511",
+          "device": "mobile",
+          "enabled": true
+        },
+        {
+          "name": "Notification",
+          "id": "2096268",
+          "device": "desktop",
+          "enabled": true
+        },
+        {
+          "name": "Exit Story",
+          "id": "2098988",
+          "device": "all",
+          "enabled": false
+        }
+      ]
+    },
+    "home": {
+      "anchors": {
+        "home-header": {
+          "id": "2096213",
+          "panel": true,
+          "device": "desktop",
+          "reserve": 260
+        },
+        "home-after-hero": {
+          "id": "2098804",
+          "panel": true,
+          "device": "mobile"
+        },
+        "home-end": {
+          "id": "2098543",
+          "panel": true
+        },
+        "sidebar-top": {
+          "id": "2098724",
+          "panel": false,
+          "device": "desktop"
+        },
+        "sidebar-lower": {
+          "id": "2098805",
+          "panel": false,
+          "device": "desktop"
+        }
+      },
+      "feeds": {
+        "home-latest": {
+          "at": [
+            6,
+            15,
+            25
+          ],
+          "slots": [
+            {
+              "id": "2098722",
+              "panel": false
+            },
+            {
+              "id": "2098723",
+              "panel": true
+            },
+            {
+              "id": "2096230",
+              "panel": false
+            }
+          ]
+        }
+      }
+    },
+    "category": {
+      "anchors": {
+        "category-end": {
+          "id": "2098810",
+          "panel": true
+        },
+        "sidebar-top": {
+          "id": "2098811",
+          "panel": false,
+          "device": "desktop"
+        },
+        "sidebar-lower": {
+          "id": "2098812",
+          "panel": false,
+          "device": "desktop"
+        }
+      },
+      "feeds": {
+        "category-list": {
+          "rule": "category",
+          "slots": [
+            {
+              "id": "2098806",
+              "panel": false
+            },
+            {
+              "id": "2098807",
+              "panel": true
+            },
+            {
+              "id": "2098808",
+              "panel": false
+            }
+          ]
+        }
+      }
+    },
+    "allposts": {
+      "anchors": {
+        "allposts-end": {
+          "id": "2098814",
+          "panel": true
+        }
+      },
+      "feeds": {
+        "allposts-list": {
+          "at": [
+            3
+          ],
+          "minCards": 4,
+          "slots": [
+            {
+              "id": "2098813",
+              "panel": false
+            }
+          ]
+        }
+      }
+    }
+  }
+}
