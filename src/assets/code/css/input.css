@@ -110,3 +110,10 @@
 #article-body blockquote { background:rgb(var(--color-surface-container-low)); border-left:3px solid #1f7a47; border-radius:0.75rem; padding:1.25rem 1.5rem; margin:1.5rem 0; font-style:italic; }
 #article-body .ei-key-takeaway { background:rgba(31,122,71,0.06); border-left:3px solid #1f7a47; border-radius:0.75rem; padding:1.25rem 1.5rem; margin:1.5rem 0; }
 #article-body strong { font-weight:600; }
+
+/* ── MGID widget slots ─────────────────────────────────────
+   Slots take no space until an ad is inside; dark mode gets a light panel behind
+   text-based layouts (Main / Impact / Plus / Rectangular) so they stay readable. */
+.mgid-slot { display: block; min-width: 0; max-width: 100%; }
+.mgid-slot:has(> [data-type="_mgwidget"]:not(:empty)) { margin: 1.75rem 0; }
+.dark .mgid-slot[data-panel]:has(> [data-type="_mgwidget"]:not(:empty)) { background: #EEF1EF; border-radius: 12px; padding: 8px; }
