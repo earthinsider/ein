@@ -58,6 +58,15 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  eleventyConfig.addFilter("mgidConfig", function (m, pageKey) {
+    if (!m || !m.enabled || !pageKey || !m.pages || !m.pages[pageKey]) return "";
+    var cfg = Object.assign(
+      { loader: m.loader, hosts: m.hosts, gapMs: m.gapMs, minWords: m.minWordsBetween, page: pageKey },
+      m.pages[pageKey]
+    );
+    return JSON.stringify(cfg).replace(/</g, "\\u003c");
+  });
+
   eleventyConfig.addFilter("cld", function (url, width) {
     return cloudinaryUrl(url, width);
   });
