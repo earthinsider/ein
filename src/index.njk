@@ -1,9 +1,9 @@
 ---
 layout: base.njk
 title: ""
+adPage: home
 ---
 {% import "macros.njk" as macros %}
-{% import "ads.njk" as ads %}
 {% set latest = collections.posts | reverse %}
 {% set featured = latest[0] %}
 <main class="w-full pt-16 bg-surface min-h-screen">
@@ -12,6 +12,7 @@ title: ""
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
 <div class="lg:col-span-8 flex flex-col gap-8 sm:gap-12 min-w-0">
 
+<div data-ad-anchor="home-header"></div>
 {% if featured %}
 <article class="group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
 <a href="{{ featured.url }}">
@@ -34,15 +35,14 @@ title: ""
 </article>
 {% endif %}
 
-{{ ads.nativeBanner() }}
-{{ ads.responsiveBanner() }}
+<div data-ad-anchor="home-after-hero"></div>
 
 <section class="flex flex-col gap-6">
 <div class="flex items-end justify-between">
 <div><span class="font-label-xs text-label-xs uppercase tracking-widest text-primary font-bold block mb-1">Latest Posts</span><h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Latest Posts</h2></div>
 <a class="font-label-md text-label-md text-primary hover:text-primary-container inline-flex items-center gap-1 transition-colors" href="/all-posts/"><span>View all</span><span class="material-symbols-outlined text-[16px]">chevron_right</span></a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-ad-feed="home-latest">
 {% for post in latest | limit(25) %}{{ macros.articleCard(post) }}{% endfor %}
 </div>
 </section>
@@ -58,6 +58,7 @@ title: ""
 </section>
 {% endif %}
 {% endfor %}
+<div data-ad-anchor="home-end"></div>
 
 </div>
 {% include "sidebar.njk" %}

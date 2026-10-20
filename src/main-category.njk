@@ -1,5 +1,6 @@
 ---
 layout: base.njk
+adPage: category
 pagination:
   data: categories
   size: 1
@@ -29,9 +30,10 @@ eleventyComputed:
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 <main class="lg:col-span-8 flex flex-col gap-6">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-ad-feed="category-list">
 {% for post in catPosts | limit(30) %}{{ macros.articleCard(post) }}{% endfor %}
 </div>
+<div data-ad-anchor="category-end"></div>
 {% if catPosts.length == 0 %}<p class="font-body-md text-body-md text-on-surface-variant">No stories published in this category yet — check back soon.</p>{% endif %}
 </main>
 {% include "sidebar.njk" %}
