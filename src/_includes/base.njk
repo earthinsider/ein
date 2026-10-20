@@ -73,7 +73,9 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
-<!-- Adsterra Social Bar — deferred to end of body -->
-<script async src="https://hystericallikingdowntown.com/93/46/4f/93464f51ee34274f409ec19f2cf79491.js"></script>
+{% set mgidJson = mgid | mgidConfig(adPage) %}{% if mgidJson %}
+<script type="application/json" id="mgid-config">{{ mgidJson | safe }}</script>
+<script defer src="/assets/code/js/mgid.js"></script>
+{% endif %}
 </body>
 </html>

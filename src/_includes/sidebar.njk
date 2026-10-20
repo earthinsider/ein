@@ -1,11 +1,5 @@
 <aside class="lg:col-span-4 flex flex-col gap-8 w-full">
-{% import "ads.njk" as ads %}
-<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex justify-center">
-{{ ads.box300x250() }}
-</div>
-<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-sm flex justify-center hidden lg:flex">
-{{ ads.skyscraper160x600() }}
-</div>
+<div data-ad-anchor="sidebar-top"></div>
 <div class="bg-surface-container-low rounded-2xl p-6 shadow-sm">
 <div class="flex items-center justify-between mb-5">
 <h2 class="font-headline-md text-headline-md text-on-surface font-bold flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">trending_up</span> Trending Posts</h2>
@@ -23,6 +17,7 @@
 {% endfor %}
 </ol>
 </div>
+<div data-ad-anchor="sidebar-lower"></div>
 <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm">
 <span class="w-10 h-10 rounded-xl bg-primary-container/10 text-primary flex items-center justify-center mb-4"><span class="material-symbols-outlined text-[24px]">mark_email_read</span></span>
 <h2 class="font-headline-md text-headline-md text-on-surface font-bold mb-2">{{ site.shortName }} Weekly</h2>
