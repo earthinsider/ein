@@ -26,7 +26,7 @@ adPage: post
 <h1 class="font-display-hero text-[32px] sm:text-display-hero text-on-surface tracking-tight max-w-5xl leading-tight mb-6">{{ title }}</h1>
 {% if excerpt %}<p class="font-body-lead text-body-lead text-on-surface-variant max-w-3xl mb-8 leading-relaxed">{{ excerpt }}</p>{% endif %}
 {% if image %}<div class="w-full rounded-xl overflow-hidden mb-6 aspect-[16/9] bg-surface-container-highest">
-<img src="{{ image }}" alt="{{ imageAlt or title }}" class="w-full h-full object-cover" width="1200" height="630" fetchpriority="high" loading="eager" decoding="async"/>
+<img src="{{ image | cld(1200) }}"{% if image | cldSet %} srcset="{{ image | cldSet }}" sizes="(min-width:1024px) 1024px, 100vw"{% endif %} alt="{{ imageAlt or title }}" class="w-full h-full object-cover" width="1280" height="720" fetchpriority="high" loading="eager" decoding="async"/>
 </div>{% endif %}
 <div class="flex flex-wrap items-center justify-between gap-3 py-3 bg-surface-container-low rounded-xl px-5">
 <span class="font-label-md text-label-md text-on-surface-variant">Reviewed by the {{ site.shortName }} Editorial Team</span>
@@ -61,7 +61,7 @@ adPage: post
 </div>
 </aside>
 <div class="flex-1 min-w-0 max-w-prose space-y-7 text-on-surface font-body-default text-body-default leading-relaxed" id="article-body">
-{{ content | safe }}
+{{ content | dedupeLead(image) | safe }}
 </div>
 </div>
 
