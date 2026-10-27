@@ -66,7 +66,7 @@
           "name": "Exit Story",
           "id": "2098988",
           "device": "all",
-          "enabled": false
+          "enabled": true
         }
       ]
     },
@@ -77,11 +77,6 @@
           "panel": true,
           "device": "desktop",
           "reserve": 260
-        },
-        "home-after-hero": {
-          "id": "2098804",
-          "panel": true,
-          "device": "mobile"
         },
         "home-end": {
           "id": "2098543",
@@ -100,21 +95,25 @@
       },
       "feeds": {
         "home-latest": {
-          "at": [
-            6,
-            15,
-            25
-          ],
-          "slots": [
+          "items": [
             {
+              "at": 2,
+              "id": "2098804",
+              "panel": true,
+              "device": "mobile"
+            },
+            {
+              "at": 6,
               "id": "2098722",
               "panel": false
             },
             {
+              "at": 15,
               "id": "2098723",
               "panel": true
             },
             {
+              "at": 25,
               "id": "2096230",
               "panel": false
             }
@@ -181,5 +180,6 @@
         }
       }
     }
-  }
+  },
+  "startAfterMs": 5000
 }
