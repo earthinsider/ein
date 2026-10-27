@@ -117,3 +117,14 @@
 .mgid-slot { display: block; min-width: 0; max-width: 100%; }
 .mgid-slot:has(> [data-type="_mgwidget"]:not(:empty)) { margin: 1.75rem 0; }
 .dark .mgid-slot[data-panel]:has(> [data-type="_mgwidget"]:not(:empty)) { background: #EEF1EF; border-radius: 12px; padding: 8px; }
+
+/* Home desktop: the header ad band is reserved in the HTML (no layout shift when the ad arrives). */
+@media (min-width: 1024px) {
+  html.ads-on [data-ad-anchor="home-header"] { min-height: 260px; }
+  html.ads-on [data-ad-anchor="home-header"]::before { content: "Advertisement"; display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .45; padding: 2px 0; }
+  html.ads-on [data-ad-anchor="home-header"]:has([data-type="_mgwidget"]:not(:empty))::before { display: none; }
+  html.ads-on [data-ad-anchor="home-header"].ad-empty { min-height: 0; }
+  html.ads-on [data-ad-anchor="home-header"].ad-empty::before { display: none; }
+}
+@media (max-width: 1023.98px) { [data-ad-anchor="home-header"] { display: none; } }
+[data-ad-anchor] > .mgid-slot { margin: 0 !important; }
