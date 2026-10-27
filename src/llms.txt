@@ -1,0 +1,19 @@
+# Earth Insider News
+
+> Independent news site covering India, the United States, the United Kingdom, world affairs, technology, business, defense and science and health.
+
+## Sections
+- [India](https://www.earthinsider.in/category/india/)
+- [United States](https://www.earthinsider.in/category/united-states/)
+- [United Kingdom](https://www.earthinsider.in/category/united-kingdom/)
+- [World](https://www.earthinsider.in/category/world/)
+- [Trending](https://www.earthinsider.in/category/trending/)
+- [Technology](https://www.earthinsider.in/category/technology/)
+- [Business](https://www.earthinsider.in/category/business/)
+- [Defense](https://www.earthinsider.in/category/defense/)
+- [Exclusives](https://www.earthinsider.in/category/exclusives/)
+- [Science And Health](https://www.earthinsider.in/category/science-and-health/)
+
+## Feeds
+- [Sitemap](https://www.earthinsider.in/sitemap.xml)
+- [RSS feed](https://www.earthinsider.in/feed.xml)
