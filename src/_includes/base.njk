@@ -9,6 +9,7 @@
   if(t==='dark'||(t===null&&sys)) document.documentElement.classList.add('dark');
 })();
 </script>
+{% set mgidJson = mgid | mgidConfig(adPage) %}{% if mgidJson %}<script>(function(){if(!/[?&]noads=1/.test(location.search))document.documentElement.className+=' ads-on'})();</script>{% endif %}
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>{% if title %}{{ title }} | {{ site.shortName }}{% else %}{{ site.name }} — {{ site.tagline }}{% endif %}</title>
@@ -18,14 +19,25 @@
 <meta property="og:description" content="{{ description or site.description }}"/>
 <meta property="og:type" content="{% if templateClass == 'post' %}article{% else %}website{% endif %}"/>
 <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
-{% if image %}
-<meta property="og:image" content="{{ image }}"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="{{ image }}"/>
+{% if image %}{% set ogImage = image | cldOg(1280,720) %}{% else %}{% set ogImage = site.url + "/assets/icons/og-default.jpg" %}{% endif %}
+<meta property="og:site_name" content="{{ site.name }}"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:image" content="{{ ogImage }}"/>
+<meta property="og:image:alt" content="{{ imageAlt or title or site.name }}"/>
+{% if not image or (image | cldSet) %}<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+{% endif %}<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="{{ title or site.name }}"/>
+<meta name="twitter:description" content="{{ description or site.description }}"/>
+<meta name="twitter:image" content="{{ ogImage }}"/>
+{% if templateClass == 'post' and date %}<meta property="article:published_time" content="{{ date | isoDate }}"/>
+<meta property="article:modified_time" content="{{ date | isoDate }}"/>
+{% if categoryLabel %}<meta property="article:section" content="{{ categoryLabel }}"/>
+{% endif %}{% endif %}<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"/>
+<link rel="preconnect" href="https://res.cloudinary.com"/>
+{% if templateClass == 'post' and image %}<link rel="preload" as="image" href="{{ image | cld(1200) }}"{% if image | cldSet %} imagesrcset="{{ image | cldSet }}" imagesizes="(min-width:1024px) 1024px, 100vw"{% endif %} fetchpriority="high"/>
+{% endif %}{% set ldCtx = {"kind": adPage, "title": title, "description": description, "image": image, "date": date, "categoryLabel": categoryLabel, "categorySlug": categorySlug, "url": page.url} %}{% set ldStr = ldCtx | ldJson(site) %}{% if ldStr %}<script type="application/ld+json">{{ ldStr | safe }}</script>
 {% endif %}
-<meta name="robots" content="max-image-preview:large"/>
 <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="/feed.xml"/>
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="{{ site.favicon }}"/>
@@ -73,7 +85,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
-{% set mgidJson = mgid | mgidConfig(adPage) %}{% if mgidJson %}
+{% if mgidJson %}
 <script type="application/json" id="mgid-config">{{ mgidJson | safe }}</script>
 <script defer src="/assets/code/js/mgid.js"></script>
 {% endif %}
