@@ -18,6 +18,66 @@ function cloudinaryUrl(url, width) {
   return m[1] + "f_auto,q_auto,c_limit,w_" + width + "/" + m[2];
 }
 
+function ogUrl(url, w, h) {
+  var m = cloudinaryParts(url);
+  if (!m) return url;
+  return m[1] + "f_jpg,q_auto,c_fill,g_auto,w_" + w + ",h_" + h + "/" + m[2];
+}
+
+function leadSlug(u) {
+  return (u || "").split("?")[0].replace(/\/+$/, "").split("/").pop().replace(/\.[a-z0-9]+$/i, "");
+}
+
+// Removes the first block of an article body when it is only the featured image again
+// (Blogger/n8n content starts with the same photo that the post template already shows as the hero).
+function dedupeLead(html, image) {
+  if (!html || !image) return html;
+  var slug = leadSlug(image);
+  if (!slug) return html;
+  var m = /^\s*<(div|p)\b[^>]*>[\s\S]*?<\/\1>/i.exec(html);
+  if (!m) return html;
+  var blk = m[0];
+  if (blk.indexOf("<img") < 0 || blk.indexOf(slug) < 0) return html;
+  if (blk.replace(/<[^>]+>/g, "").trim().length > 40) return html;
+  return html.slice(m[0].length).replace(/^\s+/, "");
+}
+
+function ldJson(ctx, site) {
+  if (!ctx || !site) return "";
+  var base = site.url, abs = function (p) { return /^https?:/.test(p) ? p : base + p; };
+  var out = [];
+  if (ctx.kind === "post") {
+    var d = ctx.date ? new Date(ctx.date) : null;
+    var iso = d && !isNaN(d.getTime()) ? d.toISOString().slice(0, 10) : undefined;
+    var url = base + (ctx.url || "");
+    var imgs = [];
+    if (ctx.image) imgs = cloudinaryParts(ctx.image)
+      ? [ogUrl(ctx.image, 1280, 720), ogUrl(ctx.image, 1200, 900), ogUrl(ctx.image, 1200, 1200)]
+      : [ctx.image];
+    var art = {
+      "@context": "https://schema.org", "@type": "NewsArticle",
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      headline: String(ctx.title || "").slice(0, 110),
+      description: ctx.description || site.description,
+      image: imgs.length ? imgs : undefined,
+      datePublished: iso, dateModified: iso,
+      author: { "@type": "Organization", name: "Earth Insider Team", url: base + "/" },
+      publisher: { "@type": "Organization", name: site.name, logo: { "@type": "ImageObject", url: abs(site.logo) } },
+      articleSection: ctx.categoryLabel || undefined, inLanguage: "en"
+    };
+    out.push(art);
+    var items = [{ "@type": "ListItem", position: 1, name: "Home", item: base + "/" }];
+    if (ctx.categorySlug) items.push({ "@type": "ListItem", position: 2, name: ctx.categoryLabel || ctx.categorySlug, item: base + "/category/" + ctx.categorySlug + "/" });
+    items.push({ "@type": "ListItem", position: items.length + 1, name: art.headline, item: url });
+    out.push({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: items });
+  } else if (ctx.kind === "home") {
+    var same = site.social ? Object.keys(site.social).map(function (k) { return site.social[k]; }).filter(function (v) { return typeof v === "string" && /^https?:/.test(v); }) : [];
+    out.push({ "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: base + "/", inLanguage: "en" });
+    out.push({ "@context": "https://schema.org", "@type": "Organization", name: site.name, url: base + "/", logo: abs(site.logo), sameAs: same.length ? same : undefined });
+  } else return "";
+  return JSON.stringify(out).replace(/</g, "\\u003c");
+}
+
 // Real publish date of a collection item.
 // Paginated migrated posts get page.date = build time (eleventyComputed can't set it),
 // so read the date field from the post's own data (YYYY-MM-DD from the archive JSON,
@@ -32,6 +92,7 @@ function realDate(item) {
 }
 
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("src/llms.txt");
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/CNAME");
   eleventyConfig.addPassthroughCopy("src/ads.txt");
@@ -58,10 +119,14 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  eleventyConfig.addFilter("cldOg", function (url, w, h) { return ogUrl(url, w, h); });
+  eleventyConfig.addFilter("dedupeLead", function (html, image) { return dedupeLead(html, image); });
+  eleventyConfig.addFilter("ldJson", function (ctx, site) { return ldJson(ctx, site); });
+
   eleventyConfig.addFilter("mgidConfig", function (m, pageKey) {
     if (!m || !m.enabled || !pageKey || !m.pages || !m.pages[pageKey]) return "";
     var cfg = Object.assign(
-      { loader: m.loader, hosts: m.hosts, gapMs: m.gapMs, minWords: m.minWordsBetween, page: pageKey },
+      { loader: m.loader, hosts: m.hosts, gapMs: m.gapMs, startAfterMs: m.startAfterMs, minWords: m.minWordsBetween, page: pageKey },
       m.pages[pageKey]
     );
     return JSON.stringify(cfg).replace(/</g, "\\u003c");
